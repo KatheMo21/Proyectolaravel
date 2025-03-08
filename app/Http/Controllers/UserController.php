@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        // dd($request-> all());
+        //
     }
 
     /**
@@ -30,22 +30,21 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //dd($request-> all());
+        dd($request-> all());
 
-        $user            = new User;   
+        $user            = new User;   // para actualizar, es este mismo paso pero sin instancear el usuario.
         $user-> name     = $request-> name; 
         $user-> lastname = $request-> lastname; 
         $user-> document = $request-> document; 
         $user-> address  = $request-> address; 
         $user-> phone    = $request-> phone; 
         $user-> birthday = $request-> birthday;
-        $user-> photo    = $request-> photo;  
+        //$user-> photo    = $request-> photo;  
         $user-> email    = $request-> email; 
-        $user-> password = $request-> password;  
-        $user-> role     = $request-> role;
+        // $user-> role     = $request-> role;
 
         if($user-> save()){
-            return redirect('user')-> with('messages','El usuario: '.$user->name.'¡Fué Creado!');
+            return redirect('users')-> with('messages','El usuario: '.$user->name.'¡Fué Creado!');
 
         }
     }
@@ -70,30 +69,30 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, user $user)
+    public function update(UserRequest $request, User $user)
     {
-        $user-> name     = $request-> nameEdit; 
-        $user-> lastname = $request-> lastnameEdit; 
-        $user-> document = $request-> documentEdit; 
-        $user-> address  = $request-> addressEdit; 
-        $user-> phone    = $request-> phoneEdit; 
-        $user-> birthday = $request-> birthdayEdit;
-        $user-> photo    = $request-> photoEdit;  
-        $user-> email    = $request-> emailEdit; 
-        $user-> password = $request-> passwordEdit;  
-        $user-> role     = $request-> roleEdit;
-
-        if($user-> save()){
-            return redirect('user')-> with('messages','El usuario: '.$user->name.'¡Fué Actualizado!');
-
-        }
+        
+            $user->name     = $request->nameEdit;
+            $user->lastname = $request->lastnameEdit;
+            $user->document = $request->documentEdit;
+            $user->address  = $request->addressEdit;
+            $user->phone    = $request->phoneEdit;
+            $user->birthday    = $request->birthdayEdit;
+            $user->email    = $request->emailEdit;
+            $user->role     = $request->roleEdit;
+            
+            if($user->save()){
+                return redirect('users')->with('messages', 'El usuario: '. $user->name.' ¡Fue actualizdo!');
+            }
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(user $user){
+        if($user->delete()){
+            return redirect('users')->with('messages', 'El usuario: '. $user->name.' ¡Fue eliminado!');
+        }
     }
 }

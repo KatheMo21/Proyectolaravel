@@ -57,18 +57,19 @@
     background-color:#6c93a6 ;
     border-color: #6c93a6;
 }
-#botonEditar{
-    background-color:#416e97 ;
-    border-color: #416e97;
-}
 
-#botonCancelar{
-    background-color:#416e97 ;
-    border-color: #416e97;
+.botonCancelar{
+    background-color:#6c93a6 ;
+    border-color: #6c93a6;
 }
 
 
-#botonAcciones{
-    background-color:#416e97 ;
-    border-color: #416e97;
+.botonEditar{
+    background-color:#6c93a6 ;
+    border-color: #6c93a6;
+}
+
+.botonEliminar{
+    background-color:#743135 ;
+    border-color: #743135;
 }

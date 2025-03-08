@@ -25,9 +25,7 @@
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 
-    {{-- Importación libreria jquery --}}
-
-    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.7.1.min.js')}}"></script>
 </head>
 
 {{-- </head> --}}
@@ -118,7 +116,7 @@
                 Addons
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            Nav Item - Pages Collapse Menu -->
             <!-- <li class="nav-item active">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                     aria-controls="collapsePages">
@@ -140,14 +138,14 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
+            Nav Item - Charts -->
             <!-- <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
+             Nav Item - Tables -->
             <!-- <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
@@ -187,7 +185,7 @@
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn fondo3" type="button">
-                                    <i class="fas fa-search fa-sm " style="color: #dfd3c3"></i>
+                                    <i class="fas fa-search fa-sm " style="color: #743135"></i>
                                 </button>
                             </div>
                         </div>
@@ -442,7 +440,9 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
-    
+    {{-- Importación libreria jquery --}}
+
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 </body>
 
 </html>

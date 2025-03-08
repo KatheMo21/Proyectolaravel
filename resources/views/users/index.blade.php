@@ -5,15 +5,15 @@
 @section('content')
     <!-- DataTales Example -->
 
+    @foreach ($users as $user)
+        <div class="card" style="width: 18rem; display:inline-block; margin: 10px;">
+            <img src="{{ asset('img/admin.jpg') }}" class="card-img-top border border-light " alt="..." style="width:80%"
+                height="70%">
+            <div class="card-body">
+                <h5 class="card-title">Información</h5>
+                <div>
+                    <tbody>
 
-    <div class="card" style="width: 18rem;">
-        <img src="{{ asset('img/admin.jpg') }}" class="card-img-top mx-auto border border-light" alt="..."
-            style="width:80%" height="70%">
-        <div class="card-body">
-            <h5 class="card-title">Información</h5>
-            <div>
-                <tbody>
-                    @foreach ($users as $user)
                         <tr>
                             <th><b>Nombre:</b> </th>
                             <th>{{ $user->name }}</th>
@@ -59,95 +59,67 @@
                             <th>{{ $user->preferences }}</th>
                         </tr><br>
 
-                        
-                    @endforeach
-                </tbody>
-                
-                    <button type="button" class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="modalEdit" id="botonEditar"><b>Editar</b>
 
-                    </button>
-                    <button type="button" class="btn btn-secondary"data-bs-toggle="modal" data-bs-target="#modalEdit" id="botonCancelar"
-                        data-bs-dismiss="modal"><b>Eliminar</b>
-
-                    </button>
-                
-            </div>
-        </div>
-
-        {{-- <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Documento</th>
-                            <th>Dirección</th>
-                            <th>Celular</th>
-                            <th>Fecha de nacimiento </th>
-                            <th>Correo electrónico</th>
-                            <th>Rol </th>
-                            <th>Preferencias</th>
-                            <th>Historial de compras</th>
-                            <th>Foto</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Documento</th>
-                            <th>Dirección</th>
-                            <th>Celular</th>
-                            <th>Fecha de nacimiento </th>
-                            <th>Correo electrónico</th>
-                            <th>Rol </th>
-                            <th>Preferencias</th>
-                            <th>Historial de compras</th>
-                            <th>Foto</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @foreach ($users as $user)
-                            <tr>
-                                <th>{{ $user->name }}</th>
-                                <th>{{ $user->lastname }}</th>
-                                <th>{{ $user->document }}</th>
-                                <th>{{ $user->address }}</th>
-                                <th>{{ $user->phone }}</th>
-                                <th>{{ $user->birthday }} </th>
-                                <th>{{ $user->email }}</th>
-                                <th>{{ $user->role }}</th>
-                                <th>{{ $user->preferences }}</th>
-                                <th>{{ $user->purchase_history }}</th>
-                                <th>{{ $user->photo }}</th>
-
-                            </tr>
-                        @endforeach
                     </tbody>
-                </table>
-            </div>
-        </div> 
-    </div>--}}
+                    <button class="btn btn-primary btn-user btn-block edit" data-bs-toggle="modal"
+                        data-bs-target="#modalEdit" id='{{ $user->id }}'><b>Editar</b></button>
 
-    {{-- Modal editar --}}
+                    <button class="btn btn-danger btn-user btn-block edit" data-bs-toggle="modal"
+                    data-bs-target="#modalDelete" id='{{ $user->id }}'><b>Eliminar</b></button>
+                    <form method="POST" action="{{ url('users/' . $user->id) }}">
+                        @csrf
+                        @method('DELETE')
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- Modal Actualizar --}}
+    <div class="modal fade " id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content fondo2">
+                <div class="modal-header d-flex justify-content-center">
+                    <h1 class="modal-title fs-2 colorLetra "><b> ¿Desea eliminar el usuario ? </b></h1>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url('users/'.$user->id) }}" class="user"> 
+                        @csrf
+                        @method('DELETE')
+                        
+                       
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary save" data-bs-dismiss="modal"
+                               ><b>Eliminar</b>
+
+                            </button>
+                            <button type="button" class="btn btonoEliminar"
+                                data-bs-dismiss="modal"><b>Cancelar</b>
+
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade " id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content fondo2">
                 <div class="modal-header d-flex justify-content-center">
-                    <h1 class="modal-title fs-2 colorLetra " id="exampleModalLabel"><b> Editar usuario</b></h1>
+                    <h1 class="modal-title fs-2 colorLetra " id="exampleModalLabel"><b> Actualizar usuario</b></h1>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body">
-                     <form method="PUT" action="{{ route('users.update') }}" class ="user"> 
+                    <form method="PUT" action="{{ url('users/' . $user->id) }}" class="user" id="formEdit">
                         @csrf
+                        @method('PUT')
                         <div class="form-group row">
+                            <input name="id" type="text" class="form-control form-control-user" hidden>
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input name="nameEdit" type="text" class="form-control form-control-user"
                                     id="exampleFirstName" placeholder="Nombre">
@@ -189,19 +161,18 @@
                                 id="exampleInputEmail" placeholder="Correo electrónico">
                         </div>
 
-
                         <div class="form-group">
-                            <select name="roleEdit" class="form-control form-control-user " aria-placeholder="Rol"
-                                id="">
+                            <select name="roleEdit" class="form-control">
                                 <option value="Usuario">Usuario</option>
                                 <option value="Administrador">Administrador</option>
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="botonCrear"><b>Crear</b>
+                            <button type="submit" class="btn btn-primary save" data-bs-dismiss="modal"
+                                id="botonCrear"><b>Guardar</b>
 
                             </button>
-                            <button type="button" class="btn btn-secondary" id="botonCancelar"
+                            <button type="button" class="btn btonoEliminar" id="botonCancelar"
                                 data-bs-dismiss="modal"><b>Cancelar</b>
 
                             </button>
@@ -214,7 +185,7 @@
         </div>
     </div>
 
-
+    {{-- modal crear --}}
     <div class="modal fade " id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content fondo2">
@@ -253,7 +224,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input name="phone" type="text" class="form-control form-control-user"
-                                    id="exampleInputPhone" placeholder="Telefono">
+                                    id="exampleinputPhone" placeholder="Telefono">
                             </div>
 
                             <div class="col-sm-6">
@@ -267,11 +238,9 @@
                                 id="exampleInputEmail" placeholder="Correo electrónico">
                         </div>
 
-
-
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="password" type="password" class="form-control form-control-user"
+                                <input name="passwordEdit" type="password" class="form-control form-control-user"
                                     id="exampleInputPassword" placeholder="Contraseña">
                             </div>
 
@@ -283,17 +252,17 @@
                         </div>
 
                         <div class="form-group">
-                            <select class="form-control " placeholder="Role" id="" name="Role">
-                                <option value="Usuario">Usuario </option>
+                            <select name="role" class="form-control form-control-user " aria-placeholder="Rol"
+                                id="">
+                                <option value="Usuario">Usuario</option>
                                 <option value="Administrador">Administrador</option>
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="botonCrear"
-                                data-bs-dismiss="modal"><b>Crear</b>
+                            <button type="submit" class="btn btn-primary" id="botonCrear"><b>Crear</b>
 
                             </button>
-                            <button type="submit" class="btn btn-secondary" id="botonCancelar"
+                            <button type="button" class="btn btn-secondary" id="botonCancelar"
                                 data-bs-dismiss="modal"><b>Cancelar</b>
 
                             </button>
@@ -306,13 +275,14 @@
         </div>
     </div>
 
-    <script>   
-
-        $(document).on('click','edit',function()){
+    <script>
+        $(document).on('click', '.edit', function() {
             var userId = $(this).attr('id');
 
-            $.get('users/'+userId+'/edit',{},function(data)){
+            $.get('users/' + userId + '/edit', {}, function(data) {
                 var user = data.user
+
+                $('input[name="id"]').val(userId);
                 $('input[name="nameEdit"]').val(user.name);
                 $('input[name="lastnameEdit"]').val(user.lastname);
                 $('input[name="documentEdit"]').val(user.document);
@@ -320,13 +290,33 @@
                 $('input[name="phoneEdit"]').val(user.phone);
                 $('input[name="birthdayEdit"]').val(user.birthday);
                 $('input[name="emailEdit"]').val(user.email);
-                $('input[name="roleEdit"]').val(user.role);
-                
+                $('select[name="roleEdit"]').val(user.role);
 
-            }
-            
+                console.log(user)
+            })
         })
 
+        $('#formEdit').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var userId = form.find('input[name="id"]').val();
+            var url = "/users/" + userId;
+
+            $.ajax({
+                url: url,
+                type: 'PUT',
+                data: form.serialize(),
+                success: function(response) {
+                    console.log("Actualización exitosa:", response);
+                    $('#modalEdit').modal('hide'); // Cierra el modal
+                    location.reload(); // Recarga la página
+                },
+                error: function(xhr) {
+                    $('#modalEdit').modal('hide'); // Cierra el modal
+                    location.reload();
+                    console.error("Error:", xhr.responseText);
+                }
+            });
+        });
     </script>
-    
 @endsection
