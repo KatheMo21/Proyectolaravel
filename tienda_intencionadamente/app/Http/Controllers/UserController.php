@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // dd($request-> all());
     }
 
     /**
@@ -30,9 +30,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        // dd($request-> all());
+        //dd($request-> all());
 
-        $user            = new User;   // para actualizar, es este mismo paso pero sin instancear el usuario.
+        $user            = new User;   
         $user-> name     = $request-> name; 
         $user-> lastname = $request-> lastname; 
         $user-> document = $request-> document; 
@@ -70,9 +70,23 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, user $user)
     {
-        //
+        $user-> name     = $request-> nameEdit; 
+        $user-> lastname = $request-> lastnameEdit; 
+        $user-> document = $request-> documentEdit; 
+        $user-> address  = $request-> addressEdit; 
+        $user-> phone    = $request-> phoneEdit; 
+        $user-> birthday = $request-> birthdayEdit;
+        $user-> photo    = $request-> photoEdit;  
+        $user-> email    = $request-> emailEdit; 
+        $user-> password = $request-> passwordEdit;  
+        $user-> role     = $request-> roleEdit;
+
+        if($user-> save()){
+            return redirect('user')-> with('messages','El usuario: '.$user->name.'¡Fué Actualizado!');
+
+        }
     }
 
     /**

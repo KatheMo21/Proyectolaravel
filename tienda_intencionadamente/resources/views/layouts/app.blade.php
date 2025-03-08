@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="{{ asset('js/bootstrap.min.css') }}">
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+
+    {{-- Importación libreria jquery --}}
+
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 </head>
 
 {{-- </head> --}}
@@ -438,9 +442,7 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
-    {{-- Importación libreria jquery --}}
-
-    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    
 </body>
 
 </html>

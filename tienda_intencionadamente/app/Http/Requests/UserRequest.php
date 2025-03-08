@@ -22,17 +22,19 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        
-        return [
-            'name'     => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'document' => ['required', 'string', 'max:255'],
-            'address'  => ['required', 'string', 'max:255'],
-            'phone'    => ['required', 'string', 'max:255'],
-            'birthday' => ['required', 'string', 'max:255'],
-            'role'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed'],
-        ];
+        if($this->method()=="PUT"){
+
+            return [
+                'name'     => ['required', 'string', 'max:255'],
+                'lastname' => ['required', 'string', 'max:255'],
+                'document' => ['required', 'string', 'max:255'],
+                'address'  => ['required', 'string', 'max:255'],
+                'phone'    => ['required', 'string', 'max:255'],
+                'birthday' => ['required', 'string', 'max:255'],
+                'role'     => ['required', 'string', 'max:255'],
+                'email'    => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+                'password' => ['required', 'confirmed'],
+            ];
+        }
     }
 }

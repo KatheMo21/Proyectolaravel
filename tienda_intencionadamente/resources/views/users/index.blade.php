@@ -59,18 +59,18 @@
                             <th>{{ $user->preferences }}</th>
                         </tr><br>
 
-                        {{-- <tr>
-                        <th><b>Historial de compras: </b></th>
-                        <th>{{ $user->purchase_history }}</th>
-                    </tr><br>
-                    
-                    <tr>
-                        <th>Foto</th>
-                        <th>{{ $user->photo }}</th>
-                    </tr><br> --}}
+                        
                     @endforeach
                 </tbody>
-                <a href="#" class="btn colorLetraClara" id="botonAcciones">Editar</a> 
+                
+                    <button type="button" class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="modalEdit" id="botonEditar"><b>Editar</b>
+
+                    </button>
+                    <button type="button" class="btn btn-secondary"data-bs-toggle="modal" data-bs-target="#modalEdit" id="botonCancelar"
+                        data-bs-dismiss="modal"><b>Eliminar</b>
+
+                    </button>
+                
             </div>
         </div>
 
@@ -133,28 +133,28 @@
                     </tbody>
                 </table>
             </div>
-        </div>--}}
-    </div> 
+        </div> 
+    </div>--}}
 
-    {{-- Modal Actualizar --}}
+    {{-- Modal editar --}}
     <div class="modal fade " id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content fondo2">
                 <div class="modal-header d-flex justify-content-center">
-                    <h1 class="modal-title fs-2 colorLetra " id="exampleModalLabel"><b> Actualizar usuario</b></h1>
+                    <h1 class="modal-title fs-2 colorLetra " id="exampleModalLabel"><b> Editar usuario</b></h1>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body">
-                    <form method="PUT" action=" {{--{{ route('users.update') }}--}}" class ="user"> 
+                     <form method="PUT" action="{{ route('users.update') }}" class ="user"> 
                         @csrf
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="name" type="text" class="form-control form-control-user"
+                                <input name="nameEdit" type="text" class="form-control form-control-user"
                                     id="exampleFirstName" placeholder="Nombre">
                             </div>
 
                             <div class="col-sm-6">
-                                <input name="lastname" type="text" class="form-control form-control-user"
+                                <input name="lastnameEdit" type="text" class="form-control form-control-user"
                                     id="exampleLastName" placeholder="Apellidos">
                             </div>
                         </div>
@@ -162,75 +162,57 @@
 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="document" type="text" class="form-control form-control-user"
+                                <input name="documentEdit" type="text" class="form-control form-control-user"
                                     id="exampleInputDocument" placeholder="Documento">
                             </div>
 
                             <div class="col-sm-6">
-                                <input name="address" type="text" class="form-control form-control-user"
+                                <input name="addressEdit" type="text" class="form-control form-control-user"
                                     id="exampleInputAddress" placeholder="Dirección">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="phone" type="text" class="form-control form-control-user"
+                                <input name="phoneEdit" type="text" class="form-control form-control-user"
                                     id="exampleinputPhone" placeholder="Telefono">
                             </div>
 
                             <div class="col-sm-6">
-                                <input name="birthday" type="date" class="form-control form-control-user"
+                                <input name="birthdayEdit" type="date" class="form-control form-control-user"
                                     id="exampleInputBirthday" placeholder="Fecha de nacimiento">
                             </div>
                         </div>
 
                         <div class="col-m-12 mb-3 mb-m-0">
-                            <input name="email" type="email" class="form-control form-control-user"
+                            <input name="emailEdit" type="email" class="form-control form-control-user"
                                 id="exampleInputEmail" placeholder="Correo electrónico">
                         </div>
 
 
-
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="password" type="password" class="form-control form-control-user"
-                                    id="exampleInputPassword" placeholder="Contraseña">
-                            </div>
-
-                            <div class="col-sm-6">
-                                <input name="password_confirmation" type="password"
-                                    class="form-control form-control-user" id="exampleRepeatPassword"
-                                    placeholder="Confirmar contraseña">
-                            </div>
-                        </div>
-
                         <div class="form-group">
-                            <select name="role" class="form-control form-control-user " aria-placeholder="Rol" id="">
+                            <select name="roleEdit" class="form-control form-control-user " aria-placeholder="Rol"
+                                id="">
                                 <option value="Usuario">Usuario</option>
                                 <option value="Administrador">Administrador</option>
                             </select>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" id="botonCrear"><b>Crear</b>
-                               
+
                             </button>
-                            <button type="button" class="btn btn-secondary" id="botonCancelar" data-bs-dismiss="modal"><b>Cancelar</b>
-                                
+                            <button type="button" class="btn btn-secondary" id="botonCancelar"
+                                data-bs-dismiss="modal"><b>Cancelar</b>
+
                             </button>
-                            
+
                         </div>
                     </form>
                 </div>
-                
+
             </div>
         </div>
     </div>
-
-
-
-
-
-
 
 
     <div class="modal fade " id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -271,7 +253,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input name="phone" type="text" class="form-control form-control-user"
-                                    id="exampleinputPhone" placeholder="Telefono">
+                                    id="exampleInputPhone" placeholder="Telefono">
                             </div>
 
                             <div class="col-sm-6">
@@ -301,25 +283,50 @@
                         </div>
 
                         <div class="form-group">
-                            <select name="role" class="form-control form-control-user " aria-placeholder="Rol" id="">
-                                <option value="Usuario">Usuario</option>
+                            <select class="form-control " placeholder="Role" id="" name="Role">
+                                <option value="Usuario">Usuario </option>
                                 <option value="Administrador">Administrador</option>
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="botonCrear"><b>Crear</b>
-                               
+                            <button type="button" class="btn btn-primary" id="botonCrear"
+                                data-bs-dismiss="modal"><b>Crear</b>
+
                             </button>
-                            <button type="button" class="btn btn-secondary" id="botonCancelar" data-bs-dismiss="modal"><b>Cancelar</b>
-                                
+                            <button type="submit" class="btn btn-secondary" id="botonCancelar"
+                                data-bs-dismiss="modal"><b>Cancelar</b>
+
                             </button>
-                            
+
                         </div>
                     </form>
                 </div>
-                
+
             </div>
         </div>
     </div>
-        {{-- @yield('modalCreate') --}}
-    @endsection
+
+    <script>   
+
+        $(document).on('click','edit',function()){
+            var userId = $(this).attr('id');
+
+            $.get('users/'+userId+'/edit',{},function(data)){
+                var user = data.user
+                $('input[name="nameEdit"]').val(user.name);
+                $('input[name="lastnameEdit"]').val(user.lastname);
+                $('input[name="documentEdit"]').val(user.document);
+                $('input[name="addressEdit"]').val(user.address);
+                $('input[name="phoneEdit"]').val(user.phone);
+                $('input[name="birthdayEdit"]').val(user.birthday);
+                $('input[name="emailEdit"]').val(user.email);
+                $('input[name="roleEdit"]').val(user.role);
+                
+
+            }
+            
+        })
+
+    </script>
+    
+@endsection

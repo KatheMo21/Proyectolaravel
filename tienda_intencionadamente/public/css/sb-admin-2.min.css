@@ -57,10 +57,14 @@
     background-color:#6c93a6 ;
     border-color: #6c93a6;
 }
+#botonEditar{
+    background-color:#416e97 ;
+    border-color: #416e97;
+}
 
 #botonCancelar{
-    background-color:#6c93a6 ;
-    border-color: #6c93a6;
+    background-color:#416e97 ;
+    border-color: #416e97;
 }
 
 
