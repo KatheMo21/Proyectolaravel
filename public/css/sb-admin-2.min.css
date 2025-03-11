@@ -53,23 +53,57 @@
     border-color: #6c93a6;
 }
 
-#botonCrear{
-    background-color:#6c93a6 ;
-    border-color: #6c93a6;
+.botonCrear{
+    background-color:#576c26 ;
+    border-color: #576c26;
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: #dfd3c3;
 }
 
 .botonCancelar{
-    background-color:#6c93a6 ;
-    border-color: #6c93a6;
+    background-color:#ec2f45 ;
+    border-color: #cf8b8a;
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: #dfd3c3;
 }
 
-
-.botonEditar{
+.botonGuardar{
     background-color:#6c93a6 ;
     border-color: #6c93a6;
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: #dfd3c3;
+}
+
+.botonEditar{
+
+    background-color:#6c93a6 ;
+    border-color: #6c93a6;
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: #dfd3c3;
+    
 }
 
 .botonEliminar{
-    background-color:#743135 ;
-    border-color: #743135;
+    background-color:#ec2f45 ;
+    border-color: #cf8b8a;
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: #dfd3c3;
+}
+.botonEliminarModal{
+    background-color:#576c26 ;
+    border-color: #576c26;
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: #dfd3c3;
+}
+
+.foto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
