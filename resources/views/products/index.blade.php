@@ -78,7 +78,7 @@
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body">
-                    <form method="PUT" action="{{ url('products/' . $product->id) }}" class="product" id="formEdit">
+                    <form method="PUT" action="{{ url('products/' . $product->id) }}" class="user" id="formEdit">
                         @csrf
                         @method('PUT')
                         <div class="form-group row">
@@ -152,7 +152,7 @@
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ url('products/'.$product->id) }}" class="product"> 
+                    <form method="POST" action="{{ url('products/'.$product->id) }}" class="user"> 
                         @csrf
                         @method('DELETE')
                         

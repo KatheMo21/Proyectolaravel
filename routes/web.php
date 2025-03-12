@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController; //ruta
+use App\Http\Controllers\ProductController; 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,7 +23,10 @@ Route::middleware('auth')->group(function () {
 
 
     route::resources([
-        'users' => UserController::class
+        'users' => UserController::class,
+        'products' => ProductController::class
+
+
     ]);
 });
 

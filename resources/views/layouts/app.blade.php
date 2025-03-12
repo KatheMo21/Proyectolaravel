@@ -25,7 +25,7 @@
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 
-    <script src="{{ asset('js/jquery-3.7.1.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 </head>
 
 {{-- </head> --}}
@@ -80,7 +80,7 @@
                             <b>listar </b></a>
 
                         <a class="collapse-item" style="color: #6c93a6" data-bs-toggle="modal"
-                        data-bs-target="#modalCreate">
+                            data-bs-target="#modalCreate">
                             <b>Crear </b></a>
 
                         {{-- <button type="button" class="collapse-item border-0 bg-none  " data-bs-toggle="modal"
@@ -99,11 +99,11 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="color:#743135">Acciones:</h6>
-                        <a class="collapse-item" style="color: #6c93a6" href="{{ route('users.index') }}">
+                        <a class="collapse-item" style="color: #6c93a6" href="{{ route('products.index') }}">
                             <b>listar </b></a>
 
                         <a class="collapse-item" style="color: #6c93a6" data-bs-toggle="modal"
-                        data-bs-target="#modalCreate">
+                            data-bs-target="#modalCreate">
                             <b>Crear </b></a>
 
                         {{-- <button type="button" class="collapse-item border-0 bg-none  " data-bs-toggle="modal"
@@ -115,8 +115,8 @@
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities" style="color: #dfd3c3">
-                    <i class="fa fa-shopping-cart" style="color: #dfd3c3" aria-hidden="true"></i> 
+                    aria-expanded="true" aria-controls="collapseTwo" style="color: #dfd3c3">
+                    <i class="fa fa-shopping-cart" style="color: #dfd3c3" aria-hidden="true"></i>
                     <span><b>Ventas</b></span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -126,7 +126,7 @@
                             <b>listar </b></a>
 
                         <a class="collapse-item" style="color: #6c93a6" data-bs-toggle="modal"
-                        data-bs-target="#modalCreate">
+                            data-bs-target="#modalCreate">
                             <b>Crear </b></a>
 
                         {{-- <button type="button" class="collapse-item border-0 bg-none  " data-bs-toggle="modal"
