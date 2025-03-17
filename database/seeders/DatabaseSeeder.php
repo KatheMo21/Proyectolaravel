@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,7 +21,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]); */  // para comentar todo se oprime alt+shit+a
 
-        $this->call
-            ([UserSeeder::class]); // este metodo llama todas las semillas
+        $this->call([
+            UserSeeder::class,
+            ProductSeeder::class,
+        ]);
     }
 }

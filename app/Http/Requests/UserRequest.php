@@ -22,6 +22,7 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
+        //dd($this->all());
         if($this->method()== "PUT"){
             return [
                 'nameEdit'      => ['required', 'string', 'max:255'],

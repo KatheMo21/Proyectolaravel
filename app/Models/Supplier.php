@@ -27,9 +27,9 @@ class Suppllier extends Model
         
     ];
 
-    public function product(){
-        return $this->belongsTo('App\Models\Product'); 
-    }
+    // public function product(){
+    //     return $this->belongsTo('App\Models\Product'); 
+    // }
 
     /**
      * The attributes that should be hidden for serialization.

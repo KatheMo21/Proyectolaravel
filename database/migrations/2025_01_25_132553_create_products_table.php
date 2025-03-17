@@ -21,12 +21,6 @@ return new class extends Migration
             $table->string('photo')->default('no-photo.png');
             $table->string('category');
             $table->integer('stock');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('sale_id');
-            $table->unsignedBigInteger('supplier_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('sale_id')->references('id')->on('sales');
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->timestamps();
         });
     }
@@ -37,5 +31,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('products_');
+        Schema::table('products', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->nullable(false)->change(); // Revertir el cambio si es necesario
+        });
     }
 };

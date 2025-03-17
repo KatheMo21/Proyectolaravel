@@ -33,8 +33,19 @@ class User extends Authenticatable // la clase con la cual se va autenticar
         'purchase_history',
     ];
 
-    public function product(){
-        return $this->belongsTo('App\Models\Product'); 
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product');
+    }
+
+
+    // función para buscar
+    public function scopeNames($users, $query)
+    {
+        if (trim($query)) {
+            $users->where('name', 'LIKE', '%' . $query . '%')
+                ->orWhere('lastname', 'LIKE', '%' . $query . '%');
+        }
     }
 
     /**

@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController; //ruta
-use App\Http\Controllers\ProductController; 
+use App\Http\Controllers\ProductController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,16 +19,21 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); 
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     /* Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); */
 
 
     route::resources([
         'users' => UserController::class,
         'products' => ProductController::class
+    ]);
 
-
+    route::resources([
+        'products' => ProductController::class
     ]);
 });
 
-require __DIR__.'/auth.php';
+Route::post('users/search', [UserController::class, 'search']);
+Route::post('pets/search', [ProductController::class, 'search']);
+
+require __DIR__ . '/auth.php';

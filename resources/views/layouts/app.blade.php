@@ -68,12 +68,12 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item colorLetra">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo" style="color: #dfd3c3">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseThree" style="color: #dfd3c3">
                     <i class="fa fa-user-circle" style="color: #dfd3c3" aria-hidden="true"></i>
                     <span> <b>Usuarios</b></span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="color:#743135">Acciones:</h6>
                         <a class="collapse-item" style="color: #6c93a6" href="{{ route('users.index') }}">
@@ -112,17 +112,17 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseTwo" style="color: #dfd3c3">
-                    <i class="fa fa-shopping-cart" style="color: #dfd3c3" aria-hidden="true"></i>
-                    <span><b>Ventas</b></span>
+            <!-- Nav VENTAS-->
+            <li class="nav-item colorLetra">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree" style="color: #dfd3c3">
+                    <i class="fa fa-shopping-bag" style="color: #dfd3c3" aria-hidden="true"></i>
+                    <span> <b>Ventas</b></span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="color:#743135">Acciones:</h6>
-                        <a class="collapse-item" style="color: #6c93a6" href="{{ route('users.index') }}">
+                        <a class="collapse-item" style="color: #6c93a6"   {{--href="{{ route('products.index') }}"--}}> 
                             <b>listar </b></a>
 
                         <a class="collapse-item" style="color: #6c93a6" data-bs-toggle="modal"
@@ -208,7 +208,7 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control  border-0 small" placeholder="Buscar..."
+                            <input id="qsearch" type="text" class="form-control  border-0 small" placeholder="Buscar..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn fondo3" type="button">
@@ -368,7 +368,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline colorLetraterracota fw-bold"><b>{{ Auth::user()->name }}
                                         {{ Auth::user()->lastname }}</b></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="{{ asset('img/admin.jpg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -440,17 +440,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Está seguro que quiere cerrar sesión?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Seleccione “Cerrar sesión” a continuación si está listo para finalizar su sesión actual...</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="botonEliminar" type="button" data-dismiss="modal">Cancelar</button>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-primary"> Cerrar Sesión </button>
+                        <button type="submit" class="botonEliminarModal"> Cerrar Sesión </button>
                     </form>
                 </div>
             </div>

@@ -27,19 +27,35 @@ class Product extends Model
         'photo',
         'category',
         'stock',
+        'user_id',
     ];
 
-    public function supplier(){
-        return $this->hasMany('App\Models\supplier'); 
+    public function user()
+    {
+        return $this->belongsTo(User::class); 
     }
 
-    public function sale(){
-        return $this->hasMany('App\Models\sale'); 
+    // public function supplier()
+    // {
+    //     return $this->hasMany(Supplier::class); 
+    // }
+
+    public function sale()
+    {
+        return $this->hasMany(Sale::class); 
     }
 
-    public function user(){
-        return $this->hasMany('App\Models\user'); 
-    }
+    // public function supplier(){
+    //     return $this->hasMany('App\Models\supplier'); 
+    // }
+
+    // public function sale(){
+    //     return $this->hasMany('App\Models\sale'); 
+    // }
+
+    // public function user(){
+    //     return $this->hasMany('App\Models\user'); 
+    // }
 
     /**
      * The attributes that should be hidden for serialization.

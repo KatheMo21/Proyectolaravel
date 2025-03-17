@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('purchase_hisory');  // historial de compras
             $table->string('order_status');   // estado del pedido
             $table->string('shipping details');  // detalles de envio
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
 
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales_');
+        Schema::dropIfExists('sales');
     }
 };

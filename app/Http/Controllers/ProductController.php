@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product; // App esta en mayuscula porque se le esta diciendo que vaya a la raiz del proyecto y lo lea.
@@ -14,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::All();
-        return view('products.index')->with(['products'=>$products]);
+        return view('products.index')->with(['products' => $products]);
     }
 
     /**
@@ -33,19 +34,18 @@ class ProductController extends Controller
         // dd($request-> all());
 
         $product               = new Product;   // para actualizar, es este mismo paso pero sin instancear el usuario.
-        $product-> name        = $request-> name; 
-        $product-> description = $request-> description; 
-        $product-> size        = $request-> size; 
-        $product-> color       = $request-> color; 
-        $product-> price       = $request-> price; 
+        $product->name        = $request->name;
+        $product->description = $request->description;
+        $product->size        = $request->size;
+        $product->color       = $request->color;
+        $product->price       = $request->price;
         //$user-> photo    = $request-> photo;  
-        $product-> category    = $request-> category; 
-        $product-> stock = $request-> stock;
-       
+        $product->category    = $request->category;
+        $product->stock = $request->stock;
 
-        if($product-> save()){
-            return redirect('products')-> with('messages','El producto: '.$product->name.'¡Fué Creado!');
 
+        if ($product->save()) {
+            return redirect('products')->with('messages', 'El producto: ' . $product->name . '¡Fué Creado!');
         }
     }
 
@@ -60,9 +60,9 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(product $product)
+    public function edit(Product $product)
     {
-        
+
         return ['product' => $product];
     }
 
@@ -71,29 +71,35 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        
-            $product->name         = $request->nameEdit;
-            $product-> name        = $request-> name; 
-            $product-> description = $request-> description; 
-            $product-> size        = $request-> size; 
-            $product-> color       = $request-> color; 
-            $product-> price       = $request-> price; 
-            $product-> category    = $request-> category; 
-            $product-> stock = $request-> stock;
-           
-            
-            if($product->save()){
-                return redirect('products')->with('messages', 'El producto: '. $product->name.' ¡Fue actualizdo!');
-            }
-        
+
+        $product->name         = $request->nameEdit;
+        $product->name        = $request->name;
+        $product->description = $request->description;
+        $product->size        = $request->size;
+        $product->color       = $request->color;
+        $product->price       = $request->price;
+        $product->category    = $request->category;
+        $product->stock = $request->stock;
+
+
+        if ($product->save()) {
+            return redirect('products')->with('messages', 'El producto: ' . $product->name . ' ¡Fue actualizdo!');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(product $product){
-        if($product->delete()){
-            return redirect('products')->with('messages', 'El producto: '. $product->name.' ¡Fue eliminado!');
+    public function destroy(product $product)
+    {
+        if ($product->delete()) {
+            return redirect('products')->with('messages', 'El producto: ' . $product->name . ' ¡Fue eliminado!');
         }
+    }
+
+    public function search(Request $request)
+    {
+        $products = Product::names($request->q)->paginate(20);
+        return view('products.search')->with(['products' => $products]);
     }
 }
