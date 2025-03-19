@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        // dd($request-> all());
+        /* dd($request-> all()); */
 
         $product               = new Product;   // para actualizar, es este mismo paso pero sin instancear el usuario.
         $product->name        = $request->name;
@@ -41,7 +41,7 @@ class ProductController extends Controller
         $product->price       = $request->price;
         //$user-> photo    = $request-> photo;  
         $product->category    = $request->category;
-        $product->stock = $request->stock;
+        $product->stock       = $request->stock;
 
 
         if ($product->save()) {
@@ -72,14 +72,32 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
 
+        // Guardar imagen si el usuario sube una nueva
+        if ($request->hasFile('profile_image')) {
+            // Eliminar imagen anterior si existe
+            $oldImagePath = public_path('profile_images/' . $product->photo);
+            if ($product->photo && file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        
+            // Guardar nueva imagen en public/profile_images/
+            $imageName = time() . '.' . $request->profile_image->getClientOriginalExtension();
+            $request->profile_image->move(public_path('profile_images'), $imageName);
+            
+            // Guardar el nombre de la imagen en la base de datos
+            $product->photo = $imageName;
+        }
+        
+
+        // Guardar otros campos
+
         $product->name         = $request->nameEdit;
-        $product->name        = $request->name;
-        $product->description = $request->description;
-        $product->size        = $request->size;
-        $product->color       = $request->color;
-        $product->price       = $request->price;
-        $product->category    = $request->category;
-        $product->stock = $request->stock;
+        $product->description = $request->descriptionEdit;
+        $product->size        = $request->sizeEdit;
+        $product->color       = $request->colorEdit;
+        $product->price       = $request->priceEdit;
+        $product->category    = $request->categoryEdit;
+        $product->stock       = $request->stockEdit;
 
 
         if ($product->save()) {
@@ -90,7 +108,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(product $product)
+    public function destroy(Product $product)
     {
         if ($product->delete()) {
             return redirect('products')->with('messages', 'El producto: ' . $product->name . ' ¡Fue eliminado!');
@@ -102,4 +120,6 @@ class ProductController extends Controller
         $products = Product::names($request->q)->paginate(20);
         return view('products.search')->with(['products' => $products]);
     }
+    
+    
 }
