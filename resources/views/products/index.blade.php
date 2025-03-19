@@ -6,9 +6,9 @@
     <!-- DataTales Example -->
     <div class="insert">
         @foreach ($products as $product)
-            <div class="card" style="width: 18rem; display:inline-block; margin: 10px;">
-                <img class="foto" src="{{ asset('img/jardinMeditacion.jpg') }}" alt="..." style="width:80%"
-                    height="70%">
+            <div class="card rounded-4 align-items-start" style="width: 18rem; display:inline-block; margin: 10px;">
+                <img class="foto rounded-circle mt-4 mx-auto d-block" src="{{ asset('profile_images/' . $product->photo) }}"
+                    alt="foto producto" style="width:260" height="260">
                 <div class="card-body">
                     <h5 class="card-title text-center"><b class="colorLetraterracota"> Información</b></h5>
                     <div>
@@ -93,12 +93,12 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input name="size" type="text" class="form-control form-control-user"
-                                   placeholder="Tamaño">
+                                    placeholder="Tamaño">
                             </div>
 
                             <div class="col-sm-6">
                                 <input name="color" type="text" class="form-control form-control-user"
-                                     placeholder="Color">
+                                    placeholder="Color">
                             </div>
                         </div>
 
@@ -110,14 +110,14 @@
 
                             <div class="col-sm-6">
                                 <input name="category" type="text" class="form-control form-control-user"
-                                     placeholder="Categoría">
+                                    placeholder="Categoría">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input name="stock" type="int" class="form-control form-control-user"
-                                     placeholder="Inventario">
+                                    placeholder="Inventario">
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="botonCrear" id="botonCrear"><b>Crear</b>
@@ -144,9 +144,11 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST " id="formEdit" action="{{ route('products.update', $product->id) }}"
-                        class="user">
+                        class="user" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+
+                        
                         <div class="form-group row">
                             <input name="id" type="text" class="form-control form-control-user" hidden>
                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -163,7 +165,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="sizetEdit" type="text" class="form-control form-control-user"
+                                <input name="sizeEdit" type="text" class="form-control form-control-user"
                                     id="exampleInputSizetEdit" placeholder="Tamaño">
                             </div>
 
@@ -175,7 +177,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="priceEdit" type="int" class="form-control form-control-user"
+                                <input name="priceEdit" type="number" class="form-control form-control-user"
                                     id="exampleinputPriceEdit" placeholder="Precio">
                             </div>
 
@@ -186,16 +188,33 @@
                         </div>
 
                         <div class="col-m-12 mb-3 mb-m-0">
-                            <input name="stockEdit" type="int" class="form-control form-control-user"
+                            <input name="stockEdit" type="number" class="form-control form-control-user"
                                 id="exampleInputStockEdit" placeholder="Inventario">
                         </div>
 
-                        <button type="submit" class="botonGuardar save" data-bs-dismiss="modal"><b>Guardar</b>
+                        <!-- **Carga y vista previa de imagen** -->
+                        <div class="form-group text-center">
+                            <label for="profileImage" class="form-label colorLetra"><b>Seleccionar foto del producto
+                                </b></label>
+                            <input type="file" id="profileImage" name="profile_image" class="form-control"
+                                accept="image/*" onchange="previewImage(event)">
 
-                        </button>
-                        <button type="button" class="botonCancelar" data-bs-dismiss="modal"><b>Cancelar</b>
+                            <img id="imagePreview" src="{{ asset('profile_images/' . $product->photo) }}"
+                                alt="Foto de perfil" class="mt-3 img-thumbnail"
+                                style="max-width: 150px; {{ $product->profile_image ? '' : 'display: none;' }}">
 
-                        </button>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="botonGuardar save" data-bs-dismiss="modal"><b>Guardar</b>
+
+                            </button>
+                            <button type="button" class="botonCancelar" data-bs-dismiss="modal"><b>Cancelar</b>
+
+                            </button>
+
+                        </div>
 
                     </form>
                 </div>
@@ -244,11 +263,104 @@
     </div>
 
 
-
-
-
-
     <script>
+        // Jquery para el modal de editar
+        $(document).on('click', '.edit', function() {
+            var productId = $(this).attr('id');
+
+            $.get('products/' + productId + '/edit', {}, function(data) {
+                var product = data.product
+
+                $('input[name="id"]').val(productId);
+                $('input[name="nameEdit"]').val(product.name);
+                $('input[name="descriptionEdit"]').val(product.description);
+                $('input[name="sizeEdit"]').val(product.size);
+                $('input[name="colorEdit"]').val(product.color);
+                $('input[name="priceEdit"]').val(product.price);
+                $('input[name="categoryEdit"]').val(product.category);
+                $('input[name="stockEdit"]').val(product.stock);
+
+                console.log(product) 
+            })
+        })
+
+        $('#formEdit').submit(function(e) {
+            e.preventDefault();
+
+            var form = $(this)[0]; // Obtener el formulario
+            var formData = new FormData(form); // Crear FormData con el formulario
+            var productId = $('input[name="id"]').val();
+            var url = "/products/" + productId;
+
+            $.ajax({
+                url: url,
+                type: 'POST', // Laravel requiere POST en formularios con archivos
+                data: formData,
+                processData: false, // Evitar que jQuery transforme los datos
+                contentType: false // No establecer content-type manualmente
+            }).always(function(response) {
+                console.log("Eliminación exitosa:", response);
+                $('#modalEdit').modal('hide');
+                location.reload();
+            });
+        });
+
+
+        // Jquery para el modal de eliminar
+        $(document).on('click', '.delete', function() {
+            var productId = $(this).attr('id');
+            $('button[name="id"]').val(productId);
+        })
+
+        $('#formDelete').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var productId = form.find('button[name="id"]').val();
+            var url = "/products/" + productId;
+
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                data: form.serialize()
+            }).always(function(response) {
+                console.log("Eliminación exitosa:", response);
+                $('#modalDelete').modal('hide');
+                location.reload();
+            });
+        });
+
+        // Jquery para buscar un registro
+        $('#qsearch').on('keyup', function(e) {
+            e.preventDefault();
+            $query = $(this).val();
+            $token = $('input[name=_token]').val();
+
+            $.post('products/search', {
+                    q: $query,
+                    _token: $token
+                },
+
+                function(data) {
+                    $('.insert').empty().append(data);
+                }
+            )
+        })
+
+        // Jquery para cambiar la imagen
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = "block";
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+
+
+    {{-- <script>
         // Jquery para el modal de editar
         $(document).on('click', '.edit', function() {
             var productId = $(this).attr('id');
@@ -265,7 +377,7 @@
                 $('input[name="categoryEdit"]').val(product.category);
                 $('select[name="stockEdit"]').val(product.stock);
 
-                console.log(product)
+                /*   console.log(product) */
             })
         })
 
@@ -325,5 +437,16 @@
                 }
             )
         })
-    </script>
+
+        // Jquery para cambiar la imagen
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = "block";
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script> --}}
 @endsection

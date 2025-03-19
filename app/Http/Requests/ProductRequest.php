@@ -40,12 +40,12 @@ class ProductRequest extends FormRequest
         // dd($this->all());
         return [
             'name'            => ['required', 'string', 'max:255'],
-            'descriptionEdit' => ['required', 'string', 'max:255'],
-            'sizeEdit'        => ['required', 'string', 'max:255'],
-            'colorEdit'       => ['required', 'string', 'max:255'],
-            'priceEdit'       => ['required', 'string', 'max:255'],
-            'categoryEdit'    => ['required', 'string', 'max:255'],
-            'stockEdit'       => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+            'size'        => ['required', 'string', 'max:255'],
+            'color'       => ['required', 'string', 'max:255'],
+            'price'       => ['required', 'string', 'max:255'],
+            'category'    => ['required', 'string', 'max:255'],
+            'stock'       => ['required', 'string', 'max:255'],
             
         ];
     }

@@ -45,6 +45,15 @@ class Product extends Model
         return $this->hasMany(Sale::class); 
     }
 
+    // función para buscar
+    public function scopeNames($products, $query)
+    {
+        if (trim($query)) {
+            $products->where('name', 'LIKE', '%' . $query . '%')
+                ->orWhere('category', 'LIKE', '%' . $query . '%');
+        }
+    }
+
     // public function supplier(){
     //     return $this->hasMany('App\Models\supplier'); 
     // }

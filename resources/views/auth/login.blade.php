@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Iniciar sesión</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -19,10 +19,12 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+      {{-- logo --}}
+      <link rel="icon" class="fa-fw " href="{{ asset('img/logo.png') }}" type="image/x-icon">
 
 </head>
 
-<body class="fondo">
+<body class="fondoInicioSesión">
 
     <div class="container">
 

@@ -1,6 +1,7 @@
 @forelse ($users as $user)
-    <div class="card" style="width: 18rem; display:inline-block; margin: 10px;">
-        <img class="foto" src="{{ asset('img/admin.jpg') }}" alt="..." style="width:80%" height="70%">
+    <div class="card rounded-4" style="width: 18rem; display:inline-block; margin: 10px;">
+        <img class="foto rounded-circle mt-4 mx-auto d-block" src="{{ asset('profile_images/' . $user->photo) }}" alt="..."
+            style="width:260" height="260">
         <div class="card-body">
             <h5 class="card-title text-center"><b class="colorLetraterracota"> Información</b></h5>
             <div>

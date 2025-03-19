@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Intencionadamente</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -18,6 +18,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    {{-- logo --}}
+    <link rel="icon" class="fa-fw " href="{{ asset('img/logo.png') }}" type="image/x-icon">
 
     {{-- Import Boostrap 5 --}}
 
@@ -45,26 +48,26 @@
                 </div> --}}
                 <div class="sidebar-brand-text mx-3 colorLetraClara">
                     <h6><b>Intencionadamente</b></h6><sup></sup>
+                    <img src="{{ asset('img/logo.png') }}" alt="" width="30px" height="30px">
+                     
                 </div>
-            </a>
+            </a> <hr>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item ">
-                <a class="nav-link" href="{{ route('dashboard') }}" style="color: #dfd3c3">
+            <li class="nav-item mx-auto ">
+                <a class="nav-link " href="{{ route('dashboard') }}" style="color: #dfd3c3">
                     <i class="fas fa-fw fa-tachometer-alt" style="color: #dfd3c3"></i>
                     <b>Dashboard</b></a>
-            </li>
+            </li> <hr>
 
-            <!-- Divider -->
-
-
+            
             <!-- Heading -->
-            <div class="sidebar-heading colorLetra" style="color: #dfd3c3">
+            <div class="sidebar-heading colorLetra mx-auto" style="color: #dfd3c3">
                 <b>Administrador</b>
-            </div>
+            </div> <hr>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item colorLetra">
@@ -133,7 +136,7 @@
                             data-bs-target="#modalCreate">Crear</button> --}}
                     </div>
                 </div>
-            </li>
+            </li> <hr>
 
             <!-- Divider -->
             {{-- <hr class="sidebar-divider"> --}}

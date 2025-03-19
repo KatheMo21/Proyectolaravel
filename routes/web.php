@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController; //ruta
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,8 +23,8 @@ Route::middleware('auth')->group(function () {
 
 
     route::resources([
-        'users' => UserController::class,
-        'products' => ProductController::class
+        'users' => UserController::class
+        /* 'products' => ProductController::class */
     ]);
 
     route::resources([
@@ -34,6 +33,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('users/search', [UserController::class, 'search']);
-Route::post('pets/search', [ProductController::class, 'search']);
+Route::post('products/search', [ProductController::class, 'search']);
 
 require __DIR__ . '/auth.php';
