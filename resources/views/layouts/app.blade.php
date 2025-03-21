@@ -125,7 +125,7 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="color:#743135">Acciones:</h6>
-                        <a class="collapse-item" style="color: #6c93a6"   {{--href="{{ route('products.index') }}"--}}> 
+                        <a class="collapse-item" style="color: #6c93a6" href="{{ route('sales.index') }}"> 
                             <b>listar </b></a>
 
                         <a class="collapse-item" style="color: #6c93a6" data-bs-toggle="modal"

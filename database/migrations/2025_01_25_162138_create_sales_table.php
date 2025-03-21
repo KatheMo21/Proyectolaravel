@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('product');
             $table->integer('amount');// a nivel de migracion debe ser integer el tipo de dato
-            $table->integer('total_coust');  
-            $table->string('purchase_hisory');  // historial de compras
+            $table->integer('total_cost');  
+            $table->string('purchase_date');  // fecha
             $table->string('order_status');   // estado del pedido
-            $table->string('shipping details');  // detalles de envio
+            $table->string('shipping_details');  // detalles de envio
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
             $table->foreign('user_id')->references('id')->on('users');

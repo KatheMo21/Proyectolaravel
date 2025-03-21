@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Intencionadamente</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -16,6 +16,8 @@
     <!-- Bootstrap 5 JS (para que funcione el carrusel) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    {{-- logo --}}
+    <link rel="icon" class="fa-fw " href="{{ asset('img/logo.png') }}" type="image/x-icon">
 
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -1405,7 +1407,7 @@
                     <div class="container text-center">
 
                     </div>
-                    <b class="footer">Creado por Katherin Monroy ®</b>
+                    <b class="footer">Copyright &copy; Creado por: Katherin Monroy </b>
                 </footer>
             </div>
         </div>

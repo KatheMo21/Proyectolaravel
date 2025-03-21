@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class sale extends Model
+class Sale extends Model
 {
     
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -20,16 +20,32 @@ class sale extends Model
         'id',
         'product',
         'amount',
-        'total_coust',
-        'purchase_hisory', // historial de compras
+        'total_cost',
+        'purchase_date', // fecha de compras
         'order_status',  // estado del pedido
-        'shipping details', // detalles de envio
+        'shipping_details',// detalles de envio
+        'user_id',
+        'product_id', 
     ];
 
     public function product(){
-        return $this->belongsTo('App\Models\Product'); 
+        return $this->belongsTo(Product::class); 
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class); 
+    }
+
+
+    // función para buscar
+    public function scopeNames($sales, $query)
+    {
+        if (trim($query)) {
+            $sales->where('purchase_date', 'LIKE', '%' . $query . '%')
+                ->orWhere('product', 'LIKE', '%' . $query . '%');
+        }
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
