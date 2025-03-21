@@ -41,4 +41,5 @@ Route::post('users/search', [UserController::class, 'search']);
 Route::post('products/search', [ProductController::class, 'search']);
 Route::post('sales/search', [SaleController::class, 'search']);
 
+
 require __DIR__ . '/auth.php';

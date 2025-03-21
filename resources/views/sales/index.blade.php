@@ -10,14 +10,21 @@
                 {{-- <img class="foto rounded-circle mt-4 mx-auto d-block" src="{{ asset('profile_images/' . $product->photo) }}"
                     alt="foto producto" style="width:260" height="260"> --}}
                 <div class="card-body">
-                    <h5 class="card-title text-center"><b class="colorLetraterracota"> Información</b></h5>
+                    <h4 class="card-title text-center"><b class="colorLetra"> Información</b></h4>
+                    <hr>
                     <div>
                         <tbody>
 
-                            <tr>
+                            {{-- <tr>
                                 <th><b class="colorLetraterracota">Producto:</b> </th>
-                                <th>{{ $sale->product }}</th>
+                                <th>{{ $sale->product->name }}</th>
+                            </tr><br> --}}
+
+                            <tr>
+                                <th><b class="colorLetraterracota"> Fecha de compra: </b> </th>
+                                <th>{{ $sale->purchase_date }}</th>
                             </tr><br>
+
 
                             <tr>
                                 <th><b class="colorLetraterracota">Cantidad:</b></th>
@@ -25,13 +32,84 @@
                             </tr><br>
 
                             <tr>
-                                <th><b class="colorLetraterracota">Total: </b></th>
-                                <th>{{ $sale->total_cost }}</th>
-                            </tr> <br>
+                                <th><b class="colorLetraterracota">Precio Unidad: </b></th>
+                                <th>{{ is_object($sale->product) ? $sale->product->price : 'Producto no encontrado' }}</th>
+                            </tr><br>
 
                             <tr>
-                                <th><b class="colorLetraterracota"> Fechda de compra: </b> </th>
-                                <th>{{ $sale->purchase_date }}</th>
+                                <th><b class="colorLetraterracota">Nombre producto: </b></th>
+                                <th>{{ is_object($sale->product) ? $sale->product->name : 'Producto no encontrado' }}</th>
+                            </tr><br>
+
+
+
+                            {{-- <tr>
+                                <th><b class="colorLetraterracota"> Detalles de envio: </b> </th>
+                                <th>{{ $sale->shipping_details }} </th>
+                            </tr><br> --}}
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Nombre usuario: </b></th>
+                                <th>{{ is_object($sale->user) ? $sale->user->name : 'Usuario no encontrado' }}</th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Apellido : </b></th>
+                                <th>{{ is_object($sale->user) ? $sale->user->lastname : 'Usuario no encontrado' }}</th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Id usuario: </b></th>
+                                <th>{{ is_object($sale->user) ? $sale->user->id : 'id no encontrado' }}</th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Documento: </b></th>
+                                <th>{{ is_object($sale->user) ? $sale->user->document : 'id no encontrado' }}</th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Dirección: </b></th>
+                                <th>{{ is_object($sale->user) ? $sale->user->address : 'id no encontrado' }}</th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Número celular: </b></th>
+                                <th>{{ is_object($sale->user) ? $sale->user->phone : 'id no encontrado' }}</th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Correo electrónico: </b></th>
+                                <th>{{ is_object($sale->user) ? $sale->user->email : 'id no encontrado' }}</th>
+                            </tr><br>
+
+
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Id producto: </b></th>
+                                <th>{{ is_object($sale->product) ? $sale->product->id : 'Producto no encontrado' }}</th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Descripción producto: </b></th>
+                                <th>{{ is_object($sale->product) ? $sale->product->description : 'Producto no encontrado' }}
+                                </th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Tamaño: </b></th>
+                                <th>{{ is_object($sale->product) ? $sale->product->size : 'Producto no encontrado' }}</th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Color: </b></th>
+                                <th>{{ is_object($sale->product) ? $sale->product->color : 'Producto no encontrado' }}</th>
+                            </tr><br>
+
+                            <tr>
+                                <th><b class="colorLetraterracota">Categoría: </b></th>
+                                <th>{{ is_object($sale->product) ? $sale->product->category : 'Producto no encontrado' }}
+                                </th>
                             </tr><br>
 
                             <tr>
@@ -40,19 +118,9 @@
                             </tr><br>
 
                             <tr>
-                                <th><b class="colorLetraterracota"> Detalles de envio: </b> </th>
-                                <th>{{ $sale->shipping_details }} </th>
-                            </tr><br>
-
-                            <tr>
-                                <th><b class="colorLetraterracota">Usuario: </b></th>
-                                <th>{{ $sale->user_id }}</th>
-                            </tr><br>
-
-                            <tr>
-                                <th><b class="colorLetraterracota">Producto: </b></th>
-                                <th>{{ $sale->product_id }}</th>
-                            </tr><br>
+                                <th><b class="colorLetraterracota">Total venta: </b></th>
+                                <th>{{ $sale->product->price * $sale->amount }}</th>
+                            </tr> <br> <br>
 
                         </tbody>
                         <button class="botonEditar  btn-block edit " data-bs-toggle="modal" data-bs-target="#modalEdit"
@@ -77,7 +145,7 @@
         <div class="modal-dialog">
             <div class="modal-content fondo2">
                 <div class="modal-header d-flex justify-content-center">
-                    <h1 class="modal-title fs-2 colorLetra " id="exampleModalLabel"><b> Crear factura</b></h1>
+                    <h1 class="modal-title fs-2 colorLetra " id="exampleModalLabel"><b> Crear venta</b></h1>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="{{ route('sales.store') }}" class ="user">
@@ -86,35 +154,42 @@
 
 
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
+                            {{-- <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input name="product" type="text" class="form-control form-control-user"
                                     placeholder="Nombre del producto">
-                            </div>
+                            </div> --}}
 
                             <div class="col-sm-6">
                                 <input name="amount" type="number" class="form-control form-control-user"
                                     placeholder="Cantidad">
                             </div>
-                        </div>
 
-                        <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input name="total_cost" type="number" class="form-control form-control-user"
                                     placeholder="Total">
                             </div>
 
+
+                        </div>
+
+                        <div class="form-group row">
+
+
                             <div class="col-sm-6">
                                 <input name="purchase_date" type="date" class="form-control form-control-user"
                                     placeholder="Fecha de compra">
                             </div>
+
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input name="shipping_details" type="text" class="form-control form-control-user"
+                                    placeholder="Detalles del envÍo">
+                            </div>
+
                         </div>
 
 
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="shipping_details" type="text" class="form-control form-control-user"
-                                    placeholder="Detalles del envio">
-                            </div>
+
 
                             <div class="col-sm-6">
                                 <input name="order_status" type="text" class="form-control form-control-user"
@@ -126,17 +201,27 @@
 
                         <div class="form-group row">
 
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="user_id" type="number" class="form-control form-control-user" id="exampleName"
-                                    placeholder="Usuario">
-                            </div>
-
                             <div class="col-sm-6">
-                                <input name="product_id" type="number" class="form-control form-control-user"
-                                    placeholder="Producto">
-                            </div>
-                        </div>
+                                <label>Seleccione el usuario:</label>
+                                <select name="user_id" class="form-control form-control-user">
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
 
+
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+
+                                <label>Seleccione el producto:</label>
+                                <select name="product_id" class="form-control form-control-user">
+                                    @foreach ($products as $product)
+                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div> 
+
+                        </div>
                         <div class="modal-footer">
                             <button type="submit" class="botonCrear" id="botonCrear"><b>Crear</b>
 
@@ -169,83 +254,82 @@
 
                         <div class="form-group row">
                             <input name="id" type="text" class="form-control form-control-user" hidden>
-                            <div class="col-sm-6 mb-3 mb-sm-0">
+                            {{--  <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input name="productEdit" type="text" class="form-control form-control-user"
                                     id="exampletProductEdit" placeholder="Usuario">
-                            </div>
+                            </div> --}}
 
                             <div class="col-sm-6">
                                 <input name="amountEdit" type="number" class="form-control form-control-user"
                                     id="exampleInputAmountEdit" placeholder="Cantidad">
                             </div>
-
-
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input name="total_costEdit" type="text" class="form-control form-control-user"
-                                        id="exampleInputTotal_coustEdit" placeholder="Total">
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <input name="purchase_dateEdit" type="date" class="form-control form-control-user"
-                                        id="exampleInputPurchase_dateEdit" placeholder="Fecha de compra">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input name="order_statusEdit" type="text" class="form-control form-control-user"
-                                        id="exampleinputOrder_statusEdit" placeholder="Estado del pedido">
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <input name="shipping_detailsEdit" type="text"
-                                        class="form-control form-control-user" id="exampleInputShipping_detailsEdit"
-                                        placeholder="Detalles del envio">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input name="user_idEdit" type="text" class="form-control form-control-user"
-                                        id="exampleinputUser_idEdit" placeholder="Usuario">
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-sm-6">
-                                        <input name="product_idEdit" type="text"
-                                            class="form-control form-control-user" id="exampleInputProduct_idEdit"
-                                            placeholder="Producto">
-                                    </div>
-                                </div>
-
-
-
-                                <!-- **Carga y vista previa de imagen** -->
-                                {{--  <div class="form-group text-center">
-                            <label for="profileImage" class="form-label colorLetra"><b>Seleccionar foto del producto
-                                </b></label>
-                            <input type="file" id="profileImage" name="profile_image" class="form-control"
-                                accept="image/*" onchange="previewImage(event)">
-
-                            <img id="imagePreview" src="{{ asset('profile_images/' . $product->photo) }}"
-                                alt="Foto de perfil" class="mt-3 img-thumbnail"
-                                style="max-width: 150px; {{ $product->profile_image ? '' : 'display: none;' }}">
-
-
-                        </div> --}}
-
-                                <div class="modal-footer">
-                                    <button type="submit" class="botonGuardar save"
-                                        data-bs-dismiss="modal"><b>Guardar</b>
-
-                                    </button>
-                                    <button type="button" class="botonCancelar" data-bs-dismiss="modal"><b>Cancelar</b>
-
-                                    </button>
-
-                                </div>
                         </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input name="total_costEdit" type="text" class="form-control form-control-user"
+                                    id="exampleInputTotal_coustEdit" placeholder="Total">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <input name="purchase_dateEdit" type="date" class="form-control form-control-user"
+                                    id="exampleInputPurchase_dateEdit" placeholder="Fecha de compra">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input name="order_statusEdit" type="text" class="form-control form-control-user"
+                                    id="exampleinputOrder_statusEdit" placeholder="Estado del pedido">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <input name="shipping_detailsEdit" type="text" class="form-control form-control-user"
+                                    id="exampleInputShipping_detailsEdit" placeholder="Detalles del envio">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+
+                            <select name="user_idEdit" class="form-control form-control-user">
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+
+
+
+                            <label>Producto:</label>
+                            <select name="product_idEdit" class="form-control form-control-user">
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+
+                            {{-- <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input name="user_id" type="number" class="form-control form-control-user" id="exampleName"
+                                    placeholder="Usuario">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <input name="product_id" type="number" class="form-control form-control-user"
+                                    placeholder="Producto">
+                            </div> --}}
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="botonGuardar save" data-bs-dismiss="modal"><b>Guardar</b>
+
+                            </button>
+                            <button type="button" class="botonCancelar" data-bs-dismiss="modal"><b>Cancelar</b>
+
+                            </button>
+
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -302,14 +386,14 @@
                 var sale = data.sale
 
                 $('input[name="id"]').val(saleId);
-                $('input[name="productEdit"]').val(sale.product);
+                /*  $('input[name="productEdit"]').val(sale.product); */
                 $('input[name="amountEdit"]').val(sale.amount);
                 $('input[name="total_costEdit"]').val(sale.total_cost);
                 $('input[name="purchase_dateEdit"]').val(sale.purchase_date);
                 $('input[name="order_statusEdit"]').val(sale.order_status);
                 $('input[name="shipping_detailsEdit"]').val(sale.shipping_details);
-                $('input[name="user_idEdit"]').val(sale.user_id);
-                $('input[name="product_idEdit"]').val(sale.product_id);
+                $('select[name="user_idEdit"]').val(sale.user_id);
+                $('select[name="product_idEdit"]').val(sale.product_id);
                 console.log(sale)
             })
         })
@@ -330,7 +414,7 @@
                 contentType: false // No establecer content-type manualmente
             }).always(function(response) {
                 console.log("Eliminación exitosa:", response);
-                $('#modalEdit').modal('hide');
+                $('#modalEdit').modal('hide'); //hide
                 location.reload();
             });
         });

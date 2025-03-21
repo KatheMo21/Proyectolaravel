@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaleRequest;
 use Illuminate\Http\Request;
 use App\Models\Sale;
+use App\Models\User;
+use App\Models\Product;
 
 class SaleController extends Controller
 {
@@ -13,8 +15,12 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::All();
-        return view('sales.index')->with(['sales' => $sales]);
+        
+        $sales = Sale::with('user', 'product')->get();
+        $users = User::all();
+        $products = Product::all();
+        
+        return view('sales.index', compact('sales', 'users', 'products'));
     }
 
     /**
@@ -25,6 +31,14 @@ class SaleController extends Controller
         //
     }
 
+    public function createList()
+{
+    $users = User::all();
+    $products = Product::all();
+    return view('sales.createList', compact('users', 'products'));
+}
+
+
     /**
      * Store a newly created resource in storage.
      */
@@ -33,7 +47,7 @@ class SaleController extends Controller
         /* dd($request-> all()); */
 
         $sale                  = new Sale;   // para actualizar, es este mismo paso pero sin instancear el usuario.
-        $sale->product         = $request->product;
+        /* $sale->product         = $request->product; */
         $sale->amount          = $request->amount;
         $sale->total_cost      = $request->total_cost;
         $sale->purchase_date   = $request->purchase_date;
@@ -92,7 +106,7 @@ class SaleController extends Controller
         // Guardar otros campos
 
 
-        $sale->product         = $request->productEdit;
+        /* $sale->product         = $request->productEdit; */
         $sale->amount          = $request->amountEdit;
         $sale->total_cost     = $request->total_costEdit;
         $sale->purchase_date   = $request->purchase_dateEdit;

@@ -14,7 +14,7 @@ class SaleSeeder extends Seeder
     public function run(): void
     {
         $sale                  = new Sale;  
-        $sale->product         = "Jardín zen";
+        /* $sale->product         = "Jardín zen"; */
         $sale->amount          =  2;
         $sale->total_cost     = 256000;
         $sale->purchase_date           = "18/03/2025";

@@ -25,7 +25,7 @@ class SaleRequest extends FormRequest
         if ($this->method() == "PUT") {
             return [
                 /* 'idEdit'               => ['required', 'string', 'max:255'], */
-                'productEdit'          => ['required', 'string', 'max:255'],
+                /* 'productEdit'          => ['required', 'string', 'max:255'], */
                 'amountEdit'           => ['required', 'string', 'max:255'],
                 'total_costEdit'      => ['required', 'string', 'max:255'],
                 'purchase_dateEdit'          => ['required', 'string', 'max:255'],
@@ -42,7 +42,7 @@ class SaleRequest extends FormRequest
         // dd($this->all());
         return [
             /* 'id'               => ['required', 'string', 'max:255'], */
-            'product'          => ['required', 'string', 'max:255'],
+            /* 'product'          => ['required', 'string', 'max:255'], */
             'amount'           => ['required', 'string', 'max:255'],
             'total_cost'      => ['required', 'string', 'max:255'],
             'purchase_date'          => ['required', 'string', 'max:255'],

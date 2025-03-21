@@ -8,9 +8,10 @@
                 <tbody>
 
                     <tr>
-                        <th><b class="colorLetraterracota">Producto:</b> </th>
-                        <th>{{ $sale->product }}</th>
+                        <th><b class="colorLetraterracota"> Fecha de compra: </b> </th>
+                        <th>{{ $sale->purchase_date }}</th>
                     </tr><br>
+
 
                     <tr>
                         <th><b class="colorLetraterracota">Cantidad:</b></th>
@@ -18,13 +19,84 @@
                     </tr><br>
 
                     <tr>
-                        <th><b class="colorLetraterracota">Total: </b></th>
-                        <th>{{ $sale->total_cost }}</th>
-                    </tr> <br>
+                        <th><b class="colorLetraterracota">Precio Unidad: </b></th>
+                        <th>{{ is_object($sale->product) ? $sale->product->price : 'Producto no encontrado' }}</th>
+                    </tr><br>
 
                     <tr>
-                        <th><b class="colorLetraterracota"> Fechda de compra: </b> </th>
-                        <th>{{ $sale->purchase_date }}</th>
+                        <th><b class="colorLetraterracota">Nombre producto: </b></th>
+                        <th>{{ is_object($sale->product) ? $sale->product->name : 'Producto no encontrado' }}</th>
+                    </tr><br>
+
+
+
+                    {{-- <tr>
+                        <th><b class="colorLetraterracota"> Detalles de envio: </b> </th>
+                        <th>{{ $sale->shipping_details }} </th>
+                    </tr><br> --}}
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Nombre usuario: </b></th>
+                        <th>{{ is_object($sale->user) ? $sale->user->name : 'Usuario no encontrado' }}</th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Apellido : </b></th>
+                        <th>{{ is_object($sale->user) ? $sale->user->lastname : 'Usuario no encontrado' }}</th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Id usuario: </b></th>
+                        <th>{{ is_object($sale->user) ? $sale->user->id : 'id no encontrado' }}</th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Documento: </b></th>
+                        <th>{{ is_object($sale->user) ? $sale->user->document : 'id no encontrado' }}</th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Dirección: </b></th>
+                        <th>{{ is_object($sale->user) ? $sale->user->address : 'id no encontrado' }}</th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Número celular: </b></th>
+                        <th>{{ is_object($sale->user) ? $sale->user->phone : 'id no encontrado' }}</th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Correo electrónico: </b></th>
+                        <th>{{ is_object($sale->user) ? $sale->user->email : 'id no encontrado' }}</th>
+                    </tr><br>
+
+
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Id producto: </b></th>
+                        <th>{{ is_object($sale->product) ? $sale->product->id : 'Producto no encontrado' }}</th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Descripción producto: </b></th>
+                        <th>{{ is_object($sale->product) ? $sale->product->description : 'Producto no encontrado' }}
+                        </th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Tamaño: </b></th>
+                        <th>{{ is_object($sale->product) ? $sale->product->size : 'Producto no encontrado' }}</th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Color: </b></th>
+                        <th>{{ is_object($sale->product) ? $sale->product->color : 'Producto no encontrado' }}</th>
+                    </tr><br>
+
+                    <tr>
+                        <th><b class="colorLetraterracota">Categoría: </b></th>
+                        <th>{{ is_object($sale->product) ? $sale->product->category : 'Producto no encontrado' }}
+                        </th>
                     </tr><br>
 
                     <tr>
@@ -33,19 +105,9 @@
                     </tr><br>
 
                     <tr>
-                        <th><b class="colorLetraterracota"> Detalles de envio: </b> </th>
-                        <th>{{ $sale->shipping_details }} </th>
-                    </tr><br>
-
-                    <tr>
-                        <th><b class="colorLetraterracota">Usuario: </b></th>
-                        <th>{{ $sale->user_id }}</th>
-                    </tr><br>
-
-                    <tr>
-                        <th><b class="colorLetraterracota">Producto: </b></th>
-                        <th>{{ $sale->product_id }}</th>
-                    </tr><br>
+                        <th><b class="colorLetraterracota">Total venta: </b></th>
+                        <th>{{ $sale->product->price * $sale->amount }}</th>
+                    </tr> <br> <br>
 
                 </tbody>
                 <button class="botonEditar  btn-block edit " data-bs-toggle="modal" data-bs-target="#modalEdit"

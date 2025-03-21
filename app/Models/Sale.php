@@ -18,7 +18,7 @@ class Sale extends Model
      */
     protected $fillable = [ // acá van los atributos de la clase, no se pone el tipo de dato, porque el ya lo toma de la base de datos
         'id',
-        'product',
+       /*  'product', */
         'amount',
         'total_cost',
         'purchase_date', // fecha de compras
@@ -28,22 +28,31 @@ class Sale extends Model
         'product_id', 
     ];
 
-    public function product(){
+    /* public function product(){
         return $this->belongsTo(Product::class); 
     }
 
     public function user()
     {
         return $this->belongsTo(User::class); 
+    } */
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     // función para buscar
     public function scopeNames($sales, $query)
     {
         if (trim($query)) {
-            $sales->where('purchase_date', 'LIKE', '%' . $query . '%')
-                ->orWhere('product', 'LIKE', '%' . $query . '%');
+            $sales->where('purchase_date', 'LIKE', '%' . $query . '%');
+            /* ->orWhere('', 'LIKE', '%' . $query . '%'); */
         }
     }
     /**

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) { // a nivel de migracion debe ser integer el tipo de dato
             $table->id();
-            $table->string('product');
+            /* $table->string('product'); */
             $table->integer('amount');// a nivel de migracion debe ser integer el tipo de dato
             $table->integer('total_cost');  
             $table->string('purchase_date');  // fecha
