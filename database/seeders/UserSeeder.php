@@ -21,8 +21,8 @@ class UserSeeder extends Seeder
         $user-> phone    = '3205925903'; 
         $user-> birthday = '21 abril';
         $user-> photo    = 'admin.jpg';
-        $user-> email    = 'katherinymonroye@gmail.com'; 
-        $user-> password =bcrypt('Katherin'); // bcrypt para encriptar la contraseña.
+        $user-> email    = 'katheymonroye@gmail.com'; 
+        $user-> password =bcrypt('12345678'); // bcrypt para encriptar la contraseña.
         $user-> role     = 'Admin'; 
         $user-> save();  // este metodo es para guardar
 
