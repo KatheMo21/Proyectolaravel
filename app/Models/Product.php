@@ -52,6 +52,7 @@ class Product extends Model
             $products->where('name', 'LIKE', '%' . $query . '%')
                 ->orWhere('category', 'LIKE', '%' . $query . '%');
         }
+        return $products;
     }
 
     // public function supplier(){

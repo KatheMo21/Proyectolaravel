@@ -7,8 +7,8 @@
     <div class="insert">
         @foreach ($products as $product)
             <div class="card rounded-4 align-items-start" style="width: 18rem; display:inline-block; margin: 10px;">
-                <img class="foto rounded-circle mt-4 mx-auto d-block" src="{{ asset('profile_images/' . $product->photo) }}"
-                    alt="foto producto" style="width:260" height="260">
+                <img class="foto rounded-circle mt-4 mx-auto my-auto d-block" src="{{ asset('profile_images/' . $product->photo) }}"
+                    alt="foto producto"  style="width:85%" height="260">
                 <div class="card-body">
                     <h5 class="card-title text-center"><b class="colorLetraterracota"> Información</b></h5>
                     <div>
@@ -65,5 +65,22 @@
         @endforeach
     </div>
 
-    
+    <script>
+        // Jquery para buscar un producto desde la barra global
+        $('#qsearch').on('keyup', function(e) {
+            e.preventDefault();
+            var query = $(this).val();
+            var token = $('input[name=_token]').val();
+
+            $.post('products/search', {
+                    q: query,
+                    _token: token
+                },
+                function(data) {
+                    $('.insert').empty().append(data);
+                }
+            );
+        });
+    </script>
+
 @endsection
