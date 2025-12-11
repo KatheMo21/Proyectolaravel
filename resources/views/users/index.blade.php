@@ -61,6 +61,7 @@
 
 
                         </tbody>
+                        {{--<a href="{{ route($user.edit, $user->id) }}" class="btn btn-warning btn-sm">Editar</a>--}}
                         <button class="botonEditar  btn-block edit " data-bs-toggle="modal" data-bs-target="#modalEdit"
                             id='{{ $user->id }}'><b>Editar</b></button>
 

@@ -6,59 +6,52 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <div class="card shadow-lg border-0 rounded-4">
-                <div class="card-header bg-primary text-white text-center fs-4 rounded-top-4">
+            <div class="card shadow-lg border-0 rounded-4 fondo2">
+                <div class="card-header  text-center fs-3 colorLetra">
                     Crear Nuevo Producto
                 </div>
 
-                <div class="card-body p-4">
+                <div class="card-body p-4 fondo2">
 
-                    <form action="{{ route('products.store') }}" method="POST">
+                    <form method="POST" action="{{ route('products.store') }}" class="user">
                         @csrf
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Nombre</label>
-                            <input type="text" name="name" class="form-control rounded-3">
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-semibold">Tamaño</label>
-                                <input type="text" name="size" class="form-control rounded-3">
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input name="name" type="text" class="form-control form-control-user" placeholder="Nombre">
                             </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-semibold">Color</label>
-                                <input type="text" name="color" class="form-control rounded-3">
+                            <div class="col-sm-6">
+                                <input name="description" type="text" class="form-control form-control-user" placeholder="Descripción">
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-semibold">Precio</label>
-                                <input type="number" name="price" class="form-control rounded-3">
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input name="size" type="text" class="form-control form-control-user" placeholder="Tamaño">
                             </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-semibold">Categoria</label>
-                                <input type="text" name="category" class="form-control rounded-3">
+                            <div class="col-sm-6">
+                                <input name="color" type="text" class="form-control form-control-user" placeholder="Color">
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold">Stock</label>
-                            <input type="number" name="stock" class="form-control rounded-3">
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input name="price" type="number" class="form-control form-control-user" placeholder="Precio">
+                            </div>
+                            <div class="col-sm-6">
+                                <input name="category" type="text" class="form-control form-control-user" placeholder="Categoría">
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Descripción</label>
-                            <textarea name="description" class="form-control rounded-3" rows="3"></textarea>
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input name="stock" type="number" class="form-control form-control-user" placeholder="Inventario">
+                            </div>
                         </div>
 
                         <div class="text-center">
-                            <button class="btn btn-success px-5 py-2 rounded-3 fw-bold">
-                                Crear Producto
-                            </button>
+                            <button type="submit" class="botonCrear"><b>Crear</b></button>
+                            <a href="{{ route('products.index') }}" class="botonCancelar"><b>Cancelar</b></a>
                         </div>
 
                     </form>

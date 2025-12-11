@@ -50,16 +50,14 @@
                             </tr><br>
 
                         </tbody>
-                        <button class="botonEditar  btn-block edit " data-bs-toggle="modal" data-bs-target="#modalEdit"
-                            id='{{ $product->id }}'><b>Editar</b></button>
-
-                        <button class="botonEliminar btn-block delete" data-bs-toggle="modal" data-bs-target="#modalDelete"
-                            id='{{ $product->id }}'><b>Eliminar</b></button>
+                        <a href="{{ route('products.edit', $product->id) }}" class="botonEditar btn-block edit text-center">
+                            <b>Editar</b>
+                        </a>
 
                         <form method="POST" action="{{ url('products/' . $product->id) }}">
                             @csrf
                             @method('DELETE')
-
+                            <button type="submit" class="botonEliminar btn-block"><b>Eliminar</b></button>
                         </form>
                     </div>
                 </div>

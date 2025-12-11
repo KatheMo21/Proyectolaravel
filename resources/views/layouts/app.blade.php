@@ -102,14 +102,14 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="color:#743135">Acciones:</h6>
-                        <a class="collapse-item" style="color: #6c93a6" >
+                        <a class="collapse-item" style="color: #6c93a6"  href="{{ route('products.index') }}"  >
                             <b>listar </b></a>
 
                         <a class="collapse-item" style="color: #6c93a6" href="{{ route('products.create') }}">
                             <b>Crear </b></a>
 
-                        {{-- <button type="button" class="collapse-item border-0 bg-none  " data-bs-toggle="modal"
-                            data-bs-target="#modalCreate">Crear</button> --}}
+                        <!--<button type="button" class="collapse-item border-0 bg-none  " data-bs-toggle="modal"
+                            data-bs-target="#modalCreate">Crear</button> -->
                     </div>
                 </div>
             </li>

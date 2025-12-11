@@ -63,7 +63,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
 
-        return ['user' => $user];
+        return response()->json (['user' => $user]);
     }
 
     /**
