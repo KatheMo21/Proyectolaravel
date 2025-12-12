@@ -375,7 +375,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Creado por: Katherin Monroy </span>
+                        <span>Copyright &copy; Creado por: Katherin Monroy & Andrés Rodriguez</span>
                     </div>
                 </div>
             </footer>
