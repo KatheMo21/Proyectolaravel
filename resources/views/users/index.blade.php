@@ -61,16 +61,16 @@
 
 
                         </tbody>
-                        {{--<a href="{{ route($user.edit, $user->id) }}" class="btn btn-warning btn-sm">Editar</a>--}}
-                        <button class="botonEditar  btn-block edit " data-bs-toggle="modal" data-bs-target="#modalEdit"
-                            id='{{ $user->id }}'><b>Editar</b></button>
+                        <a href="{{ route('users.edit', $user->id) }}" class="botonEditar btn-block edit text-center">Editar</a>
+                       <!-- <button class="botonEditar  btn-block edit " data-bs-toggle="modal" data-bs-target="#modalEdit"
+                            id='{{ $user->id }}'><b>Editar</b></button>-->
 
-                        <button class="botonEliminar btn-block delete" data-bs-toggle="modal" data-bs-target="#modalDelete"
-                            id='{{ $user->id }}'><b>Eliminar</b></button>
+                        
 
                         <form method="POST" action="{{ url('users/' . $user->id) }}">
                             @csrf
                             @method('DELETE')
+                            <button  type="submit" class="botonEliminar btn-block delete"><b>Eliminar</b></button>
 
                         </form>
                     </div>
@@ -79,96 +79,7 @@
         @endforeach
     </div>
 
-    {{-- modal crear --}}
-    <div class="modal fade " id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content fondo2">
-                <div class="modal-header d-flex justify-content-center">
-                    <h1 class="modal-title fs-2 colorLetra " id="exampleModalLabel"><b> Crear usuario</b></h1>
-                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('users.store') }}" class ="user">
-                        @csrf
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="name" type="text" class="form-control form-control-user"
-                                    placeholder="Nombre">
-                            </div>
-
-                            <div class="col-sm-6">
-                                <input name="lastname" type="text" class="form-control form-control-user"
-                                    placeholder="Apellidos">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input name="document" type="text" class="form-control form-control-user"
-                                    id="exampleInputDocument" placeholder="Documento">
-                            </div>
-
-                            <div class="col-sm-6">
-                                <input name="address" type="text" class="form-control form-control-user" " placeholder="Dirección">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                                        <input name="phone" type="text" class="form-control form-control-user"
-                                                            placeholder="Celular">
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <input name="birthday" type="date" class="form-control form-control-user"
-                                                            placeholder="Fecha de nacimiento">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-m-12 mb-3 mb-m-0">
-                                                    <input name="email" type="email" class="form-control form-control-user"
-                                                        id="exampleInputEmail" placeholder="Correo electrónico">
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                                        <input name="password" type="password" class="form-control form-control-user"
-                                                             placeholder="Contraseña">
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <input name="password_confirmation" type="password" class="form-control form-control-user"
-                                                            placeholder="Confirmar contraseña">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <select name="role" class="form-control form-control "
-                                                        id="">
-                                                        <option value="" disabled selected>Seleccione un rol</option>
-                                                        <option value="Usuario">Usuario</option>
-                                                        <option value="Administrador">Administrador</option>
-                                                    </select>
-                                                </div>
-
-                                               
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="botonCrear" id="botonCrear"><b>Crear</b>
-
-                                                    </button>
-                                                    <button type="button" class="botonCancelar" id="botonCancelar"
-                                                        data-bs-dismiss="modal"><b>Cancelar</b>
-
-                                                    </button>
-
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+   
 
                             {{-- Modal editar --}}
                             <div class="modal fade " id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

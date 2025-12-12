@@ -22,7 +22,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view('users.create', compact('users'));
     }
 
     /**
@@ -63,7 +64,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
 
-        return response()->json (['user' => $user]);
+        return view('users.edit', compact('product'));
     }
 
     /**

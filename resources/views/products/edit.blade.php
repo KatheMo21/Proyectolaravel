@@ -66,8 +66,6 @@
                             <input name="stockEdit" type="number" class="form-control form-control-user"
                                 value="{{ $product->stock }}">
                         </div>
-
-                        {{-- Carga y vista previa de imagen --}}
                         <div class="form-group text-center">
                             <label class="form-label colorLetra"><b>Seleccionar foto del producto</b></label>
                             <input type="file" name="profile_image" class="form-control" accept="image/*">
