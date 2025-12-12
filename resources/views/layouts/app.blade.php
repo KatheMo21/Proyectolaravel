@@ -49,7 +49,7 @@
                 <div class="sidebar-brand-text mx-3 colorLetraClara">
                     <h6><b>Intencionadamente</b></h6><sup></sup>
                     <img src="{{ asset('img/logo.png') }}" alt="" width="30px" height="30px">
-                     
+
                 </div>
             </a> <hr>
 
@@ -63,7 +63,7 @@
                     <b>Dashboard</b></a>
             </li> <hr>
 
-            
+
             <!-- Heading -->
             <div class="sidebar-heading colorLetra mx-auto" style="color: #dfd3c3">
                 <b>Administrador</b>
@@ -123,7 +123,7 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="color:#743135">Acciones:</h6>
-                        <a class="collapse-item" style="color: #6c93a6" href="{{ route('sales.index') }}"> 
+                        <a class="collapse-item" style="color: #6c93a6" href="{{ route('sales.index') }}">
                             <b>listar </b></a>
 
                         <a class="collapse-item" style="color: #6c93a6" data-bs-toggle="modal"
@@ -376,7 +376,7 @@
                                     @else
                                         <img class="img-profile rounded-circle" src="{{ asset('img/floreros.jpg') }}">
                                     @endif --}}
-                                    
+
 
                             </a>
                             <!-- Dropdown - User Information -->
@@ -426,7 +426,7 @@
             <footer class="sticky-footer fondo2">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto ">
-                        <span>Copyright &copy; Creado por: Katherin Monroy </span>
+                        <span>Copyright &copy; Creado por: Katherin Monroy y Andrés Rodriguez </span>
                     </div>
                 </div>
             </footer>

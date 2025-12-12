@@ -40,7 +40,7 @@ class UserController extends Controller
         $user->address  = $request->address;
         $user->phone    = $request->phone;
         $user->birthday = $request->birthday;
-        //$user-> photo    = $request-> photo;  
+        //$user-> photo    = $request-> photo;
         $user->email    = $request->email;
         $user->password = $request->password;
         $user->role     = $request->role;
@@ -64,7 +64,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
 
-        return view('users.edit', compact('product'));
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -72,38 +72,39 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        // Guardar imagen si el usuario sube una nueva
+        // Guardar imagen si se sube una nueva
         if ($request->hasFile('profile_image')) {
-            // Eliminar imagen anterior si existe
             $oldImagePath = public_path('profile_images/' . $user->photo);
             if ($user->photo && file_exists($oldImagePath)) {
                 unlink($oldImagePath);
             }
-        
-            // Guardar nueva imagen en public/profile_images/
+
             $imageName = time() . '.' . $request->profile_image->getClientOriginalExtension();
             $request->profile_image->move(public_path('profile_images'), $imageName);
-            
-            // Guardar el nombre de la imagen en la base de datos
             $user->photo = $imageName;
         }
-        
 
-        // Guardar otros campos
+        // Guardar campos desde el formulario (como en productos)
         $user->name     = $request->nameEdit;
         $user->lastname = $request->lastnameEdit;
         $user->document = $request->documentEdit;
         $user->address  = $request->addressEdit;
         $user->phone    = $request->phoneEdit;
-        $user->birthday    = $request->birthdayEdit;
+        $user->birthday = $request->birthdayEdit;
         $user->email    = $request->emailEdit;
-        // $user-> password = $request-> password;
         $user->role     = $request->roleEdit;
 
-        if ($user->save()) {
-            return redirect('users')->with('messages', 'El usuario: ' . $user->name . ' ¡Fue actualizdo!');
+        if ($request->passwordEdit) {
+            $user->password = bcrypt($request->passwordEdit);
         }
+
+        $user->save();
+
+        return redirect()->route('users.index')
+            ->with('messages', 'El usuario: ' . $user->name . ' ¡Fue actualizado!');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
