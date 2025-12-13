@@ -20,7 +20,7 @@ class SaleController extends Controller
         $users = User::all();
         $products = Product::all();
 
-        return view('sales.index', compact('sales','products', 'users'));
+        return view('sales.index', compact('sales', 'products', 'users'));
     }
 
     /**
@@ -34,9 +34,7 @@ class SaleController extends Controller
         return view('sales.create', compact('users', 'products'));
     }
 
-    public function createList()
-{
-}
+    public function createList() {}
 
 
     /**
@@ -53,7 +51,7 @@ class SaleController extends Controller
         $sale->purchase_date   = $request->purchase_date;
         //$user-> photo         = $request-> photo;
         $sale->order_status    = $request->order_status;
-        $sale->shipping_details= $request->shipping_details;
+        $sale->shipping_details = $request->shipping_details;
         $sale->user_id         = $request->user_id;
         $sale->product_id      = $request->product_id;
 
@@ -76,9 +74,12 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
+        $users = User::all();
+        $products = Product::all();
 
-        return ['sale' => $sale];
+        return view('sales.edit', compact('sale', 'users', 'products'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -107,19 +108,22 @@ class SaleController extends Controller
 
 
         /* $sale->product         = $request->productEdit; */
-        $sale->amount          = $request->amountEdit;
-        $sale->total_cost     = $request->total_costEdit;
-        $sale->purchase_date   = $request->purchase_dateEdit;
-        $sale->order_status    = $request->order_statusEdit;
-        $sale->shipping_details= $request->shipping_detailsEdit;
-        $sale->user_id         = $request->user_idEdit;
-        $sale->product_id      = $request->product_idEdit;
 
+
+        $sale->amount           = $request->amount;
+        $sale->total_cost       = $request->total_cost ?? $sale->total_cost;
+        $sale->purchase_date    = $request->purchase_date;
+        $sale->order_status     = $request->order_status;
+        $sale->shipping_details = $request->shipping_details;
+        $sale->user_id          = $request->user_id;
+        $sale->product_id       = $request->product_id;
 
         if ($sale->save()) {
-            return redirect('sales')->with('messages', 'La venta: ' . $sale->name . ' ¡Fue actualizda!');
+            return redirect()->route('sales.index')
+                ->with('messages', 'La venta fue actualizada correctamente');
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
