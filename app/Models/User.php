@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;  // esta ruta se debe copiar en los demás modelos
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;  // esta ruta se debe copiar en los demás modelos
+use Illuminate\Database\Eloquent\Model; // esta ruta se debe copiar en los demás modelos
 
 class User extends Authenticatable // la clase con la cual se va autenticar
 {
@@ -17,6 +18,7 @@ class User extends Authenticatable // la clase con la cual se va autenticar
      *
      * @var list<string>
      */
+    protected $table = 'users'; // nombre de la tabla en la base de datos
     protected $fillable = [ // acá van los atributos de la clase, no se pone el tipo de dato, porque el ya lo toma de la base de datos
         'id',
         'name',

@@ -16,11 +16,13 @@ class SaleController extends Controller
     public function index()
     {
 
-        $sales = Sale::with('user', 'product')->paginate();
+
+        $sales = Sale::with('user', 'product')->get();
         $users = User::all();
         $products = Product::all();
 
-        return view('sales.index', compact('sales', 'products', 'users'));
+        return view('sales.index', compact('sales', 'users', 'products'));
+
     }
 
     /**
@@ -31,7 +33,8 @@ class SaleController extends Controller
 
         $users = User::all();
         $products = Product::all();
-        return view('sales.create', compact('users', 'products'));
+        return view('sales.create', compact('users','products'));
+
     }
 
     public function createList() {}
@@ -74,10 +77,13 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
+
         $users = User::all();
         $products = Product::all();
         //$sales = Sale::all();
         return view('sales.edit', compact('sale', 'users', 'products'));
+
+        /** return view('sales.edit', compact('sale'));*/
     }
 
 

@@ -16,6 +16,7 @@ class ProductController extends Controller
     {
         $products = Product::All();
         return view('products.index')->with(['products' => $products]);
+
     }
 
     /**
@@ -27,7 +28,7 @@ class ProductController extends Controller
         return view('products.create', compact('product'));
     }
 
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -42,7 +43,7 @@ class ProductController extends Controller
         $product->size        = $request->size;
         $product->color       = $request->color;
         $product->price       = $request->price;
-        //$user-> photo    = $request-> photo;  
+        //$user-> photo    = $request-> photo;
         $product->category    = $request->category;
         $product->stock       = $request->stock;
 
@@ -50,6 +51,9 @@ class ProductController extends Controller
         if ($product->save()) {
             return redirect('products')->with('messages', 'El producto: ' . $product->name . '¡Fué Creado!');
         }
+
+
+
     }
 
     /**
@@ -57,7 +61,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -81,15 +85,14 @@ class ProductController extends Controller
             if ($product->photo && file_exists($oldImagePath)) {
                 unlink($oldImagePath);
             }
-        
+
             // Guardar nueva imagen en public/profile_images/
             $imageName = time() . '.' . $request->profile_image->getClientOriginalExtension();
             $request->profile_image->move(public_path('profile_images'), $imageName);
-            
+
             // Guardar el nombre de la imagen en la base de datos
             $product->photo = $imageName;
         }
-        
 
         // Guardar otros campos
 
@@ -105,6 +108,9 @@ class ProductController extends Controller
         if ($product->save()) {
             return redirect('products')->with('messages', 'El producto: ' . $product->name . ' ¡Fue actualizdo!');
         }
+
+
+
     }
 
     /**
@@ -115,6 +121,9 @@ class ProductController extends Controller
         if ($product->delete()) {
             return redirect('products')->with('messages', 'El producto: ' . $product->name . ' ¡Fue eliminado!');
         }
+
+        // API
+        
     }
 
     public function search(Request $request)
@@ -122,6 +131,6 @@ class ProductController extends Controller
         $products = Product::names($request->q)->paginate(20);
         return view('products.search')->with(['products' => $products]);
     }
-    
-    
+
+
 }

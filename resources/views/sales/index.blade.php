@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titleModule', 'Ventas')
+@section('titleModule', 'Sales')
 
 @section('content')
 <div class="insert">
@@ -38,20 +38,6 @@
                     {{ ($sale->product->price ?? 0) * $sale->amount }}
                 </p>
 
-                <!--<button class="botonEditar btn-block edit"
-                        data-id="{{ $sale->id }}"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modalEdit">
-                    <b>Editar</b>
-                </button>
-
-                <button class="botonEliminar btn-block delete"
-                        data-id="{{ $sale->id }}"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modalDelete">
-                    <b>Eliminar</b>
-                </button> -->
-
                 <hr>
 
                 <a href="{{ route('sales.edit', $sale->id) }}" class="botonEditar btn-block edit text-center">
@@ -61,29 +47,14 @@
                 <form method="POST" action="{{ url('sales/' . $sale->id) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="botonEliminar btn-block"><b>Eliminar</b></button>
+                    <button type="submit" class="botonEliminar btn-block">
+                        <b>Eliminar</b>
+                    </button>
                 </form>
+
             </div>
         </div>
     @endforeach
 
 </div>
-
-    <script>
-        // Jquery para buscar una venta desde la barra global
-            $('#qsearch').on('keyup', function(e) {
-                e.preventDefault();
-                var query = $(this).val();
-                var token = $('input[name=_token]').val();
-
-                $.post('sales/search', {
-                    q: query,
-                    _token: token
-                },
-                function(data) {
-                    $('.insert').empty().append(data);
-                }
-            );
-            });
-    </script>
 @endsection

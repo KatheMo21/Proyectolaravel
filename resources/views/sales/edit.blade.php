@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('title', 'Editar Venta')
 
 @section('content')
@@ -13,6 +14,7 @@
 
                 <div class="card-body p-4">
 
+                    {{-- Errores de validación --}}
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul class="mb-0">
@@ -60,16 +62,18 @@
                         <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Cantidad</label>
-                                <input name="amountEdit" type="number"
-                                    class="form-control form-control-user"
-                                    value="{{ $sale->amount }}">
+                                <input type="number"
+                                       name="amountEdit"
+                                       class="form-control form-control-user"
+                                       value="{{ $sale->amount }}">
                             </div>
 
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Total</label>
-                                <input name="total_costEdit" type="number"
-                                    class="form-control form-control-user"
-                                    value="{{ $sale->total_cost }}">
+                                <input type="number"
+                                       name="total_costEdit"
+                                       class="form-control form-control-user"
+                                       value="{{ $sale->total_cost }}">
                             </div>
                         </div>
 
@@ -77,25 +81,28 @@
                         <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Fecha de compra</label>
-                                <input name="purchase_dateEdit" type="date"
-                                    class="form-control form-control-user"
-                                    value="{{ $sale->purchase_date }}">
+                                <input type="date"
+                                       name="purchase_dateEdit"
+                                       class="form-control form-control-user"
+                                       value="{{ $sale->purchase_date }}">
                             </div>
 
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Estado del pedido</label>
-                                <input name="order_statusEdit" type="text"
-                                    class="form-control form-control-user"
-                                    value="{{ $sale->order_status }}">
+                                <input type="text"
+                                       name="order_statusEdit"
+                                       class="form-control form-control-user"
+                                       value="{{ $sale->order_status }}">
                             </div>
                         </div>
 
                         {{-- Envío --}}
                         <div class="mb-3">
                             <label class="colorLetra fw-bold">Detalles de envío</label>
-                            <input name="shipping_detailsEdit" type="text"
-                                class="form-control form-control-user"
-                                value="{{ $sale->shipping_details }}">
+                            <input type="text"
+                                   name="shipping_detailsEdit"
+                                   class="form-control form-control-user"
+                                   value="{{ $sale->shipping_details }}">
                         </div>
 
                         {{-- Botones --}}

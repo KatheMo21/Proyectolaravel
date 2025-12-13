@@ -16,6 +16,7 @@ class Sale extends Model
      *
      * @var list<string>
      */
+    protected $table = 'sales'; // nombre de la tabla en la base de datos
     protected $fillable = [ // acá van los atributos de la clase, no se pone el tipo de dato, porque el ya lo toma de la base de datos
         'id',
        /*  'product', */
