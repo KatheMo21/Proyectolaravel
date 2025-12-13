@@ -15,11 +15,11 @@ class SaleController extends Controller
      */
     public function index()
     {
-        
-        $sales = Sale::with('users', 'products')->paginate();
+
+        $sales = Sale::with('user', 'product')->paginate();
         $users = User::all();
         $products = Product::all();
-        
+
         return view('sales.index', compact('sales','products', 'users'));
     }
 
@@ -28,7 +28,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        
+
         $users = User::all();
         $products = Product::all();
         return view('sales.create', compact('users', 'products'));
@@ -49,9 +49,9 @@ class SaleController extends Controller
         $sale                  = new Sale;   // para actualizar, es este mismo paso pero sin instancear el usuario.
         /* $sale->product         = $request->product; */
         $sale->amount          = $request->amount;
-        $sale->total_coust      = $request->total_coust;
+        $sale->total_cost      = $request->total_cost;
         $sale->purchase_date   = $request->purchase_date;
-        //$user-> photo         = $request-> photo;  
+        //$user-> photo         = $request-> photo;
         $sale->order_status    = $request->order_status;
         $sale->shipping_details= $request->shipping_details;
         $sale->user_id         = $request->user_id;
@@ -59,7 +59,7 @@ class SaleController extends Controller
 
 
         if ($sale->save()) {
-            return redirect('sales')->with('messages', 'la venta: ' . $sale->id . '¡Fué Creada!');
+            return redirect()->route('sales.index')->with('messages', 'la venta: ' . $sale->id . '¡Fué Creada!');
         }
     }
 
@@ -93,11 +93,11 @@ class SaleController extends Controller
             if ($sale->photo && file_exists($oldImagePath)) {
                 unlink($oldImagePath);
             }
-        
+
             // Guardar nueva imagen en public/profile_images/
             $imageName = time() . '.' . $request->profile_image->getClientOriginalExtension();
             $request->profile_image->move(public_path('profile_images'), $imageName);
-            
+
             // Guardar el nombre de la imagen en la base de datos
             $sale->photo = $imageName;
         } */
@@ -108,7 +108,7 @@ class SaleController extends Controller
 
         /* $sale->product         = $request->productEdit; */
         $sale->amount          = $request->amountEdit;
-        $sale->total_coust     = $request->total_coustEdit;
+        $sale->total_cost     = $request->total_costEdit;
         $sale->purchase_date   = $request->purchase_dateEdit;
         $sale->order_status    = $request->order_statusEdit;
         $sale->shipping_details= $request->shipping_detailsEdit;

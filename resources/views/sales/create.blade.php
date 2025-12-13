@@ -23,7 +23,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label class="fw-bold colorLetra">Total</label>
-                                <input name="total_coust" type="number" class="form-control form-control-user" placeholder="Total venta">
+                                <input name="total_cost" type="number" class="form-control form-control-user" placeholder="Total venta">
                             </div>
                         </div>
 

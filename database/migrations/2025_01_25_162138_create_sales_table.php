@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             /* $table->string('product'); */
             $table->integer('amount');// a nivel de migracion debe ser integer el tipo de dato
-            $table->integer('total_coust');  
+            $table->integer('total_cost');
             $table->string('purchase_date');  // fecha
             $table->string('order_status');   // estado del pedido
             $table->string('shipping_details');  // detalles de envio
