@@ -15,11 +15,11 @@ class SaleController extends Controller
      */
     public function index()
     {
-        
+
         $sales = Sale::with('user', 'product')->get();
         $users = User::all();
         $products = Product::all();
-        
+
         return view('sales.index', compact('sales', 'users', 'products'));
     }
 
@@ -28,7 +28,9 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $products = Product::all();
+        return view('sales.create', compact('users','products'));
     }
 
     public function createList()
@@ -51,7 +53,7 @@ class SaleController extends Controller
         $sale->amount          = $request->amount;
         $sale->total_cost      = $request->total_cost;
         $sale->purchase_date   = $request->purchase_date;
-        //$user-> photo         = $request-> photo;  
+        //$user-> photo         = $request-> photo;
         $sale->order_status    = $request->order_status;
         $sale->shipping_details= $request->shipping_details;
         $sale->user_id         = $request->user_id;
@@ -76,8 +78,7 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
-
-        return ['sale' => $sale];
+        return view('sales.edit', compact('sale'));
     }
 
     /**
@@ -93,11 +94,11 @@ class SaleController extends Controller
             if ($sale->photo && file_exists($oldImagePath)) {
                 unlink($oldImagePath);
             }
-        
+
             // Guardar nueva imagen en public/profile_images/
             $imageName = time() . '.' . $request->profile_image->getClientOriginalExtension();
             $request->profile_image->move(public_path('profile_images'), $imageName);
-            
+
             // Guardar el nombre de la imagen en la base de datos
             $sale->photo = $imageName;
         } */

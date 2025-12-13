@@ -34,7 +34,7 @@ class ProductRequest extends FormRequest
             ];
         }
 
-        
+
 
 
         // dd($this->all());
@@ -46,8 +46,8 @@ class ProductRequest extends FormRequest
             'price'       => ['required', 'string', 'max:255'],
             'category'    => ['required', 'string', 'max:255'],
             'stock'       => ['required', 'string', 'max:255'],
-            
+
         ];
     }
-    
+
 }

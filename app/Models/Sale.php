@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Sale extends Model
 {
-    
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable; // HasFactory crea la fabrica de usuarios.
 
@@ -16,6 +16,7 @@ class Sale extends Model
      *
      * @var list<string>
      */
+    protected $table = 'sales'; // nombre de la tabla en la base de datos
     protected $fillable = [ // acá van los atributos de la clase, no se pone el tipo de dato, porque el ya lo toma de la base de datos
         'id',
        /*  'product', */
@@ -25,16 +26,16 @@ class Sale extends Model
         'order_status',  // estado del pedido
         'shipping_details',// detalles de envio
         'user_id',
-        'product_id', 
+        'product_id',
     ];
 
     /* public function product(){
-        return $this->belongsTo(Product::class); 
+        return $this->belongsTo(Product::class);
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class); 
+        return $this->belongsTo(User::class);
     } */
 
     public function product()
@@ -77,5 +78,5 @@ class Sale extends Model
             'password' => 'hashed',
         ];
     }
-    
+
 }

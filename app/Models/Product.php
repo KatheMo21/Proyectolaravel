@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory; 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 class Product extends Model
 {
-    
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable; // HasFactory crea la fabrica de usuarios.
 
@@ -32,17 +32,17 @@ class Product extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class); 
+        return $this->belongsTo(User::class);
     }
 
     // public function supplier()
     // {
-    //     return $this->hasMany(Supplier::class); 
+    //     return $this->hasMany(Supplier::class);
     // }
 
     public function sale()
     {
-        return $this->hasMany(Sale::class); 
+        return $this->hasMany(Sale::class);
     }
 
     // función para buscar
@@ -56,15 +56,15 @@ class Product extends Model
     }
 
     // public function supplier(){
-    //     return $this->hasMany('App\Models\supplier'); 
+    //     return $this->hasMany('App\Models\supplier');
     // }
 
     // public function sale(){
-    //     return $this->hasMany('App\Models\sale'); 
+    //     return $this->hasMany('App\Models\sale');
     // }
 
     // public function user(){
-    //     return $this->hasMany('App\Models\user'); 
+    //     return $this->hasMany('App\Models\user');
     // }
 
     /**
