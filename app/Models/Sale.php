@@ -20,7 +20,7 @@ class Sale extends Model
         'id',
        /*  'product', */
         'amount',
-        'total_cost',
+        'total_coust',
         'purchase_date', // fecha de compras
         'order_status',  // estado del pedido
         'shipping_details',// detalles de envio

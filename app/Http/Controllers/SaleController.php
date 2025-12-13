@@ -16,11 +16,11 @@ class SaleController extends Controller
     public function index()
     {
         
-        $sales = Sale::with('user', 'product')->get();
+        $sales = Sale::with('users', 'products')->paginate();
         $users = User::all();
         $products = Product::all();
         
-        return view('sales.index', compact('sales', 'users', 'products'));
+        return view('sales.index', compact('sales','products', 'users'));
     }
 
     /**
@@ -28,14 +28,14 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        
+        $users = User::all();
+        $products = Product::all();
+        return view('sales.create', compact('users', 'products'));
     }
 
     public function createList()
 {
-    $users = User::all();
-    $products = Product::all();
-    return view('sales.createList', compact('users', 'products'));
 }
 
 
@@ -49,7 +49,7 @@ class SaleController extends Controller
         $sale                  = new Sale;   // para actualizar, es este mismo paso pero sin instancear el usuario.
         /* $sale->product         = $request->product; */
         $sale->amount          = $request->amount;
-        $sale->total_cost      = $request->total_cost;
+        $sale->total_coust      = $request->total_coust;
         $sale->purchase_date   = $request->purchase_date;
         //$user-> photo         = $request-> photo;  
         $sale->order_status    = $request->order_status;
@@ -108,7 +108,7 @@ class SaleController extends Controller
 
         /* $sale->product         = $request->productEdit; */
         $sale->amount          = $request->amountEdit;
-        $sale->total_cost     = $request->total_costEdit;
+        $sale->total_coust     = $request->total_coustEdit;
         $sale->purchase_date   = $request->purchase_dateEdit;
         $sale->order_status    = $request->order_statusEdit;
         $sale->shipping_details= $request->shipping_detailsEdit;

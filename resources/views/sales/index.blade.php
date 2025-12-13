@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <a href="{{ route('sales.create') }}" class="btn btn-primary mb-3">Crear venta</a>
+    <!--<a href="{{ route('sales.create') }}" class="btn btn-primary mb-3">Crear venta</a>-->
 
     <div class="row">
         @foreach ($sales as $sale)
@@ -36,7 +36,7 @@
                     <div class="mt-2">
                         <a href="{{ route('sales.edit', $sale->id) }}" class="btn btn-warning btn-sm">Editar</a>
 
-                        <form action="{{ route('sales.destroy', $sale->id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('sales/'. $sale->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
