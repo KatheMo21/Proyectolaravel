@@ -76,7 +76,7 @@ class SaleController extends Controller
     {
         $users = User::all();
         $products = Product::all();
-
+        //$sales = Sale::all();
         return view('sales.edit', compact('sale', 'users', 'products'));
     }
 
@@ -86,7 +86,7 @@ class SaleController extends Controller
      */
     public function update(SaleRequest $request, Sale $sale)
     {
-
+        //dd($request->all());
         // Guardar imagen si el usuario sube una nueva
         /* if ($request->hasFile('profile_image')) {
             // Eliminar imagen anterior si existe
@@ -110,13 +110,13 @@ class SaleController extends Controller
         /* $sale->product         = $request->productEdit; */
 
 
-        $sale->amount           = $request->amount;
-        $sale->total_cost       = $request->total_cost ?? $sale->total_cost;
-        $sale->purchase_date    = $request->purchase_date;
-        $sale->order_status     = $request->order_status;
-        $sale->shipping_details = $request->shipping_details;
-        $sale->user_id          = $request->user_id;
-        $sale->product_id       = $request->product_id;
+        $sale->amount           = $request->amountEdit;
+        $sale->total_cost       = $request->total_costEdit ?? $sale->total_cost;
+        $sale->purchase_date    = $request->purchase_dateEdit;
+        $sale->order_status     = $request->order_statusEdit;
+        $sale->shipping_details = $request->shipping_detailsEdit;
+        $sale->user_id          = $request->user_idEdit;
+        $sale->product_id       = $request->product_idEdit;
 
         if ($sale->save()) {
             return redirect()->route('sales.index')

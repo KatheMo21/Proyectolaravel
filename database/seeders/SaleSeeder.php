@@ -16,7 +16,7 @@ class SaleSeeder extends Seeder
         $sale                  = new Sale;  
         /* $sale->product         = "Jardín zen"; */
         $sale->amount          =  2;
-        $sale->total_coust     = 256000;
+        $sale->total_cost     = 256000;
         $sale->purchase_date           = "18/03/2025";
         $sale->order_status    = "Empacado";
         $sale->shipping_details ="En tienda";

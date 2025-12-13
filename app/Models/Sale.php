@@ -52,8 +52,9 @@ class Sale extends Model
     {
         if (trim($query)) {
             $sales->where('purchase_date', 'LIKE', '%' . $query . '%');
-            /* ->orWhere('', 'LIKE', '%' . $query . '%'); */
+              //->orWhere('', 'LIKE', '%' . $query . '%'); 
         }
+        return $sales;
     }
     /**
      * The attributes that should be hidden for serialization.

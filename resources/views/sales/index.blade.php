@@ -7,7 +7,7 @@
 
     @foreach ($sales as $sale)
         <div class="card rounded-4 align-items-start"
-             style="width: 18rem; display:inline-block; margin: 10px;">
+            style="width: 18rem; display:inline-block; margin: 10px;">
 
             <div class="card-body">
                 <h5 class="card-title text-center">
@@ -38,7 +38,7 @@
                     {{ ($sale->product->price ?? 0) * $sale->amount }}
                 </p>
 
-                {{-- <button class="botonEditar btn-block edit"
+                <!--<button class="botonEditar btn-block edit"
                         data-id="{{ $sale->id }}"
                         data-bs-toggle="modal"
                         data-bs-target="#modalEdit">
@@ -50,26 +50,40 @@
                         data-bs-toggle="modal"
                         data-bs-target="#modalDelete">
                     <b>Eliminar</b>
-                </button> --}}
+                </button> -->
 
-                ////
+                <hr>
 
-                        <a href="{{ route('sales.edit', $sale->id) }}" class="botonEditar btn-block edit text-center">
-                            <b>Editar</b>
-                        </a>
+                <a href="{{ route('sales.edit', $sale->id) }}" class="botonEditar btn-block edit text-center">
+                    <b>Editar</b>
+                </a>
 
-                        <form method="POST" action="{{ url('sales/' . $sale->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="botonEliminar btn-block"><b>Eliminar</b></button>
-                        </form>
-
-
-
-
+                <form method="POST" action="{{ url('sales/' . $sale->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="botonEliminar btn-block"><b>Eliminar</b></button>
+                </form>
             </div>
         </div>
     @endforeach
 
 </div>
+
+    <script>
+        // Jquery para buscar una venta desde la barra global
+            $('#qsearch').on('keyup', function(e) {
+                e.preventDefault();
+                var query = $(this).val();
+                var token = $('input[name=_token]').val();
+
+                $.post('sales/search', {
+                    q: query,
+                    _token: token
+                },
+                function(data) {
+                    $('.insert').empty().append(data);
+                }
+            );
+            });
+    </script>
 @endsection

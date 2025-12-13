@@ -13,6 +13,16 @@
 
                 <div class="card-body p-4">
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('sales.update', $sale->id) }}">
                         @csrf
                         @method('PUT')
@@ -23,7 +33,7 @@
                         <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Usuario</label>
-                                <select name="user_id" class="form-control form-control-user">
+                                <select name="user_idEdit" class="form-control form-control-user">
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}"
                                             {{ $sale->user_id == $user->id ? 'selected' : '' }}>
@@ -35,7 +45,7 @@
 
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Producto</label>
-                                <select name="product_id" class="form-control form-control-user">
+                                <select name="product_idEdit" class="form-control form-control-user">
                                     @foreach ($products as $product)
                                         <option value="{{ $product->id }}"
                                             {{ $sale->product_id == $product->id ? 'selected' : '' }}>
@@ -50,14 +60,14 @@
                         <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Cantidad</label>
-                                <input name="amount" type="number"
+                                <input name="amountEdit" type="number"
                                     class="form-control form-control-user"
                                     value="{{ $sale->amount }}">
                             </div>
 
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Total</label>
-                                <input name="total_cost" type="number"
+                                <input name="total_costEdit" type="number"
                                     class="form-control form-control-user"
                                     value="{{ $sale->total_cost }}">
                             </div>
@@ -67,14 +77,14 @@
                         <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Fecha de compra</label>
-                                <input name="purchase_date" type="date"
+                                <input name="purchase_dateEdit" type="date"
                                     class="form-control form-control-user"
                                     value="{{ $sale->purchase_date }}">
                             </div>
 
                             <div class="col-sm-6 mb-3">
                                 <label class="colorLetra fw-bold">Estado del pedido</label>
-                                <input name="order_status" type="text"
+                                <input name="order_statusEdit" type="text"
                                     class="form-control form-control-user"
                                     value="{{ $sale->order_status }}">
                             </div>
@@ -83,7 +93,7 @@
                         {{-- Envío --}}
                         <div class="mb-3">
                             <label class="colorLetra fw-bold">Detalles de envío</label>
-                            <input name="shipping_details" type="text"
+                            <input name="shipping_detailsEdit" type="text"
                                 class="form-control form-control-user"
                                 value="{{ $sale->shipping_details }}">
                         </div>
